@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyMDb.Models
 {
@@ -6,6 +7,7 @@ namespace MyMDb.Models
     {
         public int Id { get; set; }
 
+        [Required]
         public string Name { get; set; }
 
         [ForeignKey(nameof(Movie))]
