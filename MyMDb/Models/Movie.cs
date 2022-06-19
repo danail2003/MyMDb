@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyMDb.Models
 {
@@ -6,10 +7,15 @@ namespace MyMDb.Models
     {
         public Guid Id { get; set; } = Guid.NewGuid();
 
+        [Required]
+        [MaxLength(50)]
         public string Name { get; set; }
 
+        [Required]
+        [MaxLength(20)]
         public string Country { get; set; }
 
+        [Required]
         public string Description { get; set; }
 
         public int Year { get; set; }
@@ -31,6 +37,8 @@ namespace MyMDb.Models
 
         public ICollection<Genre> Genres { get; set; } = new HashSet<Genre>();
 
-        public ICollection<Actor> Actors { get; set; } = new HashSet<Actor>();
+        public ICollection<MovieActor> Actors { get; set; } = new HashSet<MovieActor>();
+
+        public ICollection<UserMovie> UsersMovie { get; set; } = new HashSet<UserMovie>();
     }
 }

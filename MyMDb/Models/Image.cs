@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyMDb.Models
 {
@@ -6,6 +7,8 @@ namespace MyMDb.Models
     {
         public Guid Id { get; set; } = Guid.NewGuid();
 
+        [Required]
+        [MaxLength(5)]
         public string Extension { get; set; }
 
         [ForeignKey(nameof(Movie))]

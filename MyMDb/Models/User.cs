@@ -12,10 +12,10 @@ namespace MyMDb.Models
         [Required]
         public string Password { get; set; }
 
-        public ICollection<Movie> RatedMovies { get; set; } = new HashSet<Movie>();
+        public ICollection<UserMovie> RatedMovies { get; set; } = new HashSet<UserMovie>();
 
-        public ICollection<Movie> WatchList { get; set; } = new HashSet<Movie>();
+        public ICollection<UserMovie> WatchList { get; set; } = new HashSet<UserMovie>();
 
-        public ICollection<Actor> Actors { get; set; } = new HashSet<Actor>();
+        public ICollection<UserActor> UsersActors { get; set; } = new HashSet<UserActor>();
     }
 }
