@@ -13,9 +13,24 @@ namespace MyMDb.Services
             this.context = context;
         }
 
-        public Task<IEnumerable<MovieDTO>> GetComingSoonMovies()
+        public async Task<IEnumerable<MovieDTO>> GetComingSoonMovies()
         {
-            throw new NotImplementedException();
+            return await this.context.Movies.OrderByDescending(x => x.ReleaseDate).Select(x => new MovieDTO
+            {
+                Id = x.Id,
+                Name = x.Name,
+                ImageId = x.ImageId,
+                Description = x.Description,
+                Duration = x.Duration,
+                Actors = x.Actors,
+                Budget = x.Budget,
+                Country = x.Country,
+                Genres = x.Genres,
+                Gross = x.Gross,
+                Rating = x.Rating,
+                VideoUrl = x.VideoUrl,
+                Year = x.Year,
+            }).ToListAsync();
         }
 
         public async Task<IEnumerable<MovieDTO>> GetMostGrossedMovies()

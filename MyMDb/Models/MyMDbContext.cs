@@ -45,7 +45,7 @@ namespace MyMDb.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<MovieActor>().HasKey(x => new { x.MovieId, x.ActorId });
+            modelBuilder.Entity<MovieActor>().HasKey(x => new { x.MovieActorId, x.ActorId });
             modelBuilder.Entity<UserMovie>().HasKey(x => new { x.MovieId, x.MovieUserId });
             modelBuilder.Entity<UserActor>().HasKey(x => new { x.ActorUserId, x.ActorId });
 

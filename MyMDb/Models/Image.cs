@@ -12,7 +12,7 @@ namespace MyMDb.Models
         public string Extension { get; set; }
 
         [ForeignKey(nameof(Movie))]
-        public Guid MovieId { get; set; }
+        public Guid MovieImageId { get; set; }
 
         public Movie Movie { get; set; }
     }

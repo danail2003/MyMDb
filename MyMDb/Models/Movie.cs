@@ -15,6 +15,8 @@ namespace MyMDb.Models
         [MaxLength(20)]
         public string Country { get; set; }
 
+        public DateTime ReleaseDate => DateTime.UtcNow;
+
         [Required]
         public string Description { get; set; }
 
@@ -34,6 +36,8 @@ namespace MyMDb.Models
         public Guid ImageId { get; set; }
 
         public Image Image { get; set; }
+
+        public ICollection<Image> MovieImages { get; set; } = new HashSet<Image>();
 
         public ICollection<Genre> Genres { get; set; } = new HashSet<Genre>();
 
