@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace MyMDb.Models
+﻿namespace MyMDb.Models
 {
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public class UserMovie
     {
         [ForeignKey(nameof(User))]

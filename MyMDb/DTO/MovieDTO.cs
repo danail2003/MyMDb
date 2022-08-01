@@ -1,7 +1,7 @@
-﻿using MyMDb.Models;
-
-namespace MyMDb.DTO
+﻿namespace MyMDb.DTO
 {
+    using MyMDb.Models;
+
     public class MovieDTO
     {
         public Guid Id { get; set; }

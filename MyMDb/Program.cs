@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using MyMDb.Constants;
 using MyMDb.Models;
+using MyMDb.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,7 @@ ConfigurationManager configuration = builder.Configuration;
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<MyMDbContext>(x => x.UseSqlServer(configuration.GetConnectionString(SettingKeys.ConnectionString)));
+builder.Services.AddTransient<IMoviesService, MoviesService>();
 
 var app = builder.Build();
 

@@ -3,7 +3,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class Movie
+    public class TVShow
     {
         public Guid Id { get; set; } = Guid.NewGuid();
 
@@ -37,12 +37,14 @@
 
         public Image Image { get; set; }
 
+        public ICollection<Episode> Episodes { get; set; } = new HashSet<Episode>();
+
         public ICollection<Image> MovieImages { get; set; } = new HashSet<Image>();
 
         public ICollection<Genre> Genres { get; set; } = new HashSet<Genre>();
 
-        public ICollection<MovieActor> Actors { get; set; } = new HashSet<MovieActor>();
+        public ICollection<TVShowActor> Actors { get; set; } = new HashSet<TVShowActor>();
 
-        public ICollection<UserMovie> UsersMovie { get; set; } = new HashSet<UserMovie>();
+        public ICollection<UserTVShow> UsersTVShow { get; set; } = new HashSet<UserTVShow>();
     }
 }

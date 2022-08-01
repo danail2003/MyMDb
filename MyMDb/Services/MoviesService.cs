@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MyMDb.DTO;
-using MyMDb.Models;
-
-namespace MyMDb.Services
+﻿namespace MyMDb.Services
 {
+    using Microsoft.EntityFrameworkCore;
+
+    using MyMDb.DTO;
+    using MyMDb.Models;
+
     public class MoviesService : IMoviesService
     {
         private readonly MyMDbContext context;
@@ -13,7 +14,7 @@ namespace MyMDb.Services
             this.context = context;
         }
 
-        public async Task<IEnumerable<MovieDTO>> GetComingSoonMovies()
+        public async Task<IEnumerable<MovieDTO>> GetComingSoonMoviesAsync()
         {
             return await this.context.Movies.OrderByDescending(x => x.ReleaseDate).Select(x => new MovieDTO
             {
@@ -33,7 +34,7 @@ namespace MyMDb.Services
             }).ToListAsync();
         }
 
-        public async Task<IEnumerable<MovieDTO>> GetMostGrossedMovies()
+        public async Task<IEnumerable<MovieDTO>> GetMostGrossedMoviesAsync()
         {
             return await this.context.Movies.OrderByDescending(x => x.Gross).Take(50).Select(x => new MovieDTO
             {
@@ -53,7 +54,7 @@ namespace MyMDb.Services
             }).ToListAsync();
         }
 
-        public async Task<Movie> GetMovie(Guid id)
+        public async Task<Movie> GetMovieAsync(Guid id)
         {
             if (Guid.Empty == id)
             {
@@ -70,7 +71,7 @@ namespace MyMDb.Services
             return movie;
         }
 
-        public async Task<IEnumerable<MovieDTO>> GetTopRatedMovies()
+        public async Task<IEnumerable<MovieDTO>> GetTopRatedMoviesAsync()
         {
             return await this.context.Movies.OrderByDescending(x => x.Rating).Select(x => new MovieDTO
             {

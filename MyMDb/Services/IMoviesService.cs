@@ -5,12 +5,12 @@ namespace MyMDb.Services
 {
     public interface IMoviesService
     {
-        Task<Movie> GetMovie(Guid id);
+        Task<Movie> GetMovieAsync(Guid id);
 
-        Task<IEnumerable<MovieDTO>> GetTopRatedMovies();
+        Task<IEnumerable<MovieDTO>> GetTopRatedMoviesAsync();
 
-        Task<IEnumerable<MovieDTO>> GetMostGrossedMovies();
+        Task<IEnumerable<MovieDTO>> GetMostGrossedMoviesAsync();
 
-        Task<IEnumerable<MovieDTO>> GetComingSoonMovies();
+        Task<IEnumerable<MovieDTO>> GetComingSoonMoviesAsync();
     }
 }
