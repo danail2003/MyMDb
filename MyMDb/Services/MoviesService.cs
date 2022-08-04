@@ -73,7 +73,7 @@
 
         public async Task<IEnumerable<MovieDTO>> GetTopRatedMoviesAsync()
         {
-            return await this.context.Movies.OrderByDescending(x => x.Rating).Select(x => new MovieDTO
+            return await this.context.Movies.OrderByDescending(x => x.Rating).Take(2).Select(x => new MovieDTO
             {
                 Id = x.Id,
                 Name = x.Name,
