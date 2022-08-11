@@ -7,6 +7,9 @@ import { AppComponent } from './app.component';
 import { MoviesService } from './core/services/movies.service';
 import { MoviesListComponent } from './feature/movies/movies-list/movies-list.component';
 import { MovieListItemComponent } from './feature/movies/movie-list-item/movie-list-item.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { RouterModule } from '@angular/router';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -16,10 +19,12 @@ import { MovieListItemComponent } from './feature/movies/movie-list-item/movie-l
   ],
   imports: [
     BrowserModule,
+    CoreModule,
+    RouterModule,
     AppRoutingModule,
     HttpClientModule
   ],
   providers: [MoviesService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, HeaderComponent]
 })
 export class AppModule { }
