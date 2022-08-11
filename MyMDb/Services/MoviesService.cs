@@ -14,13 +14,37 @@
             this.context = context;
         }
 
+        public async Task<Guid> CreateMovie(CreateMovieDTO movieDTO)
+        {
+            var movie = new Movie
+            {
+                Name = movieDTO.Name,
+                Description = movieDTO.Description,
+                Duration = movieDTO.Duration,
+                Budget = movieDTO.Budget,
+                Country = movieDTO.Country,
+                Year = movieDTO.Year,
+                Gross = movieDTO.Gross,
+                Rating = movieDTO.Rating,
+                Image = movieDTO.Image,
+                Video = movieDTO.Video,
+                Genres = movieDTO.Genres,
+                Actors = movieDTO.Actors,
+            };
+
+            await this.context.AddAsync(movie);
+            await this.context.SaveChangesAsync();
+
+            return movie.Id;
+        }
+
         public async Task<IEnumerable<MovieDTO>> GetComingSoonMoviesAsync()
         {
             return await this.context.Movies.OrderByDescending(x => x.ReleaseDate).Select(x => new MovieDTO
             {
                 Id = x.Id,
                 Name = x.Name,
-                ImageId = x.ImageId,
+                Image = x.Image,
                 Description = x.Description,
                 Duration = x.Duration,
                 Actors = x.Actors,
@@ -29,7 +53,7 @@
                 Genres = x.Genres,
                 Gross = x.Gross,
                 Rating = x.Rating,
-                VideoUrl = x.VideoUrl,
+                Video = x.Video,
                 Year = x.Year,
             }).ToListAsync();
         }
@@ -40,7 +64,7 @@
             {
                 Id = x.Id,
                 Name = x.Name,
-                ImageId = x.ImageId,
+                Image = x.Image,
                 Description = x.Description,
                 Duration = x.Duration,
                 Actors = x.Actors,
@@ -49,7 +73,7 @@
                 Genres = x.Genres,
                 Gross = x.Gross,
                 Rating = x.Rating,
-                VideoUrl = x.VideoUrl,
+                Video = x.Video,
                 Year = x.Year,
             }).ToListAsync();
         }
@@ -77,7 +101,7 @@
             {
                 Id = x.Id,
                 Name = x.Name,
-                ImageId = x.ImageId,
+                Image = x.Image,
                 Description = x.Description,
                 Duration = x.Duration,
                 Actors = x.Actors,
@@ -86,7 +110,7 @@
                 Genres = x.Genres,
                 Gross = x.Gross,
                 Rating = x.Rating,
-                VideoUrl = x.VideoUrl,
+                Video = x.Video,
                 Year = x.Year,
             }).ToListAsync();
         }

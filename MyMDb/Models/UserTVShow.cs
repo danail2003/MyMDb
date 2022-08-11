@@ -5,7 +5,7 @@
     public class UserTVShow
     {
         [ForeignKey(nameof(User))]
-        public Guid TVShowUserId { get; set; }
+        public Guid UserId { get; set; }
 
         public User User { get; set; }
 

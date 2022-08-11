@@ -1,11 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace MyMDb.Models
+﻿namespace MyMDb.Models
 {
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public class UserActor
     {
         [ForeignKey(nameof(User))]
-        public Guid ActorUserId { get; set; }
+        public Guid UserId { get; set; }
 
         public User User { get; set; }
 

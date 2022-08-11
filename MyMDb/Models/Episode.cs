@@ -1,14 +1,17 @@
 ﻿namespace MyMDb.Models
 {
+    using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     public class Episode
     {
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        [Required, MaxLength(50)]
+        public string Name { get; set; } = string.Empty;
 
-        public string Description { get; set; }
+        [Required]
+        public string Description { get; set; } = string.Empty;
 
         public double Rating { get; set; }
 
@@ -16,10 +19,7 @@
 
         public TimeSpan Duration { get; set; }
 
-        [ForeignKey(nameof(Image))]
-        public Guid ImageId { get; set; }
-
-        public Image Image { get; set; }
+        public string Image { get; set; } = string.Empty;
 
         [ForeignKey(nameof(TVShow))]
         public Guid TVShowId { get; set; }

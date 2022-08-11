@@ -5,7 +5,7 @@ namespace MyMDb.Models
     public class MovieActor
     {
         [ForeignKey(nameof(Movie))]
-        public Guid MovieActorId { get; set; }
+        public Guid MovieId { get; set; }
 
         public Movie Movie { get; set; }
 

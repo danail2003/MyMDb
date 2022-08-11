@@ -1,7 +1,6 @@
 ﻿namespace MyMDb.Models
 {
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
 
     public class TVShow
     {
@@ -9,16 +8,16 @@
 
         [Required]
         [MaxLength(50)]
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         [Required]
         [MaxLength(20)]
-        public string Country { get; set; }
+        public string Country { get; set; } = string.Empty;
 
         public DateTime ReleaseDate => DateTime.UtcNow;
 
         [Required]
-        public string Description { get; set; }
+        public string Description { get; set; } = string.Empty;
 
         public int Year { get; set; }
 
@@ -30,16 +29,11 @@
 
         public double Rating { get; set; }
 
-        public string VideoUrl { get; set; }
+        public string Video { get; set; } = string.Empty;
 
-        [ForeignKey(nameof(Image))]
-        public Guid ImageId { get; set; }
-
-        public Image Image { get; set; }
+        public string Image { get; set; } = string.Empty;
 
         public ICollection<Episode> Episodes { get; set; } = new HashSet<Episode>();
-
-        public ICollection<Image> MovieImages { get; set; } = new HashSet<Image>();
 
         public ICollection<Genre> Genres { get; set; } = new HashSet<Genre>();
 

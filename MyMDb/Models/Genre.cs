@@ -9,7 +9,7 @@ namespace MyMDb.Models
 
         [Required]
         [MaxLength(20)]
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         [ForeignKey(nameof(Movie))]
         public Guid MovieId { get; set; }

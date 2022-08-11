@@ -5,7 +5,7 @@
     public class UserMovie
     {
         [ForeignKey(nameof(User))]
-        public Guid MovieUserId { get; set; }
+        public Guid UserId { get; set; }
 
         public User User { get; set; }
 
