@@ -5,24 +5,26 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MoviesService } from './core/services/movies.service';
-import { MoviesListComponent } from './feature/movies/movies-list/movies-list.component';
-import { MovieListItemComponent } from './feature/movies/movie-list-item/movie-list-item.component';
-import { HeaderComponent } from './shared/header/header.component';
+import { HeaderComponent } from './core/header/header.component';
 import { RouterModule } from '@angular/router';
 import { CoreModule } from './core/core.module';
+import { HomepageComponent } from './shared/homepage/homepage.component';
+import { NotFoundPageComponent } from './shared/not-found-page/not-found-page.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MoviesListComponent,
-    MovieListItemComponent,
+    HomepageComponent,
+    NotFoundPageComponent,
   ],
   imports: [
     BrowserModule,
     CoreModule,
     RouterModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ],
   providers: [MoviesService],
   bootstrap: [AppComponent, HeaderComponent]
