@@ -14,4 +14,12 @@ export class MoviesService {
   loadMovies(): Observable<Movie[]> {
     return this.httpClient.get<Movie[]>(`${apiUrl}/movies`);
   }
+
+  createMovie(body: {
+    name: string, country: string, description: string,
+    year: number, duration: number, budget: number,
+    gross: number, rating: number, video: string, image: string
+  }): Observable<Movie> {
+    return this.httpClient.post<Movie>(`${apiUrl}/movies`, body);
+  }
 }

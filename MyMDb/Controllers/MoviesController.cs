@@ -1,6 +1,7 @@
 ﻿namespace MyMDb.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
+    using MyMDb.DTO;
     using MyMDb.Services;
 
     [ApiController]
@@ -18,6 +19,14 @@
         public async Task<IActionResult> GetTopRatedMovies()
         {
             var result = await _moviesService.GetTopRatedMoviesAsync();
+
+            return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateMovie(CreateMovieDTO dto)
+        {
+            var result = await _moviesService.CreateMovie(dto);
 
             return Ok(result);
         }

@@ -31,12 +31,14 @@
         [Range(1, 10)]
         public double Rating { get; set; }
 
+        [Required]
         public string Video { get; set; }
 
+        [Required]
         public string Image { get; set; }
 
-        public ICollection<Genre> Genres { get; set; }
+        //public ICollection<Genre> Genres { get; set; }
 
-        public ICollection<MovieActor> Actors { get; set; }
+        //public ICollection<MovieActor> Actors { get; set; }
     }
 }

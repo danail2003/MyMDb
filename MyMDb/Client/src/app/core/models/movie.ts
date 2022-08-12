@@ -9,8 +9,8 @@ export interface Movie {
     budget: number;
     gross: number;
     rating: number;
-    imageId: string;
-    movieImages: string[];
+    image: string;
+    video: string;
     genres: string[];
     actors: string[];
     usersMovie: string[];

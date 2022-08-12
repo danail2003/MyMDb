@@ -16,6 +16,8 @@
 
         public async Task<Guid> CreateMovie(CreateMovieDTO movieDTO)
         {
+            //TODO: make videos embed
+
             var movie = new Movie
             {
                 Name = movieDTO.Name,
@@ -28,8 +30,8 @@
                 Rating = movieDTO.Rating,
                 Image = movieDTO.Image,
                 Video = movieDTO.Video,
-                Genres = movieDTO.Genres,
-                Actors = movieDTO.Actors,
+                //Genres = movieDTO.Genres,
+                //Actors = movieDTO.Actors,
             };
 
             await this.context.AddAsync(movie);

@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Movie } from 'src/app/core/models/movie';
 
 @Component({
@@ -8,9 +9,14 @@ import { Movie } from 'src/app/core/models/movie';
 })
 export class MovieListItemComponent implements OnInit {
   @Input() movie!: Movie;
-  constructor() { }
+  public displayURL: any;
+
+  constructor(private sanitizer: DomSanitizer) {
+    
+  }
 
   ngOnInit(): void {
+    this.displayURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.movie.video);
   }
 
 }

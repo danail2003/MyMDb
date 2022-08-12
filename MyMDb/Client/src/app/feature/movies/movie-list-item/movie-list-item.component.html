@@ -1,4 +1,10 @@
 <div>
     <h2>{{movie.name}}</h2>
     <p>{{movie.description}}</p>
+    <img [src]="movie.image">
+    <div id="visor-video">
+        <iframe width="300" height="200"
+          [src]="displayURL">
+        </iframe>        
+      </div>
 </div>

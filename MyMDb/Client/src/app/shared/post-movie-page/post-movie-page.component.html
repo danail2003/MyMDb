@@ -1,1 +1,44 @@
-<h1>HELLO</h1>
+<h1>Add Movie</h1>
+<form [formGroup]="postFormGroup" (ngSubmit)="createMovie()">
+    <p>
+        <label for="name">Name</label>
+        <input formControlName="name" name="name" id="name" placeholder="Movie name">
+    </p>
+    <p>
+        <label for="country">Country</label>
+        <input formControlName="country" name="country" id="country" placeholder="Country">
+    </p>
+    <p>
+        <label for="description">Description</label>
+        <input formControlName="description" name="description" id="description" placeholder="Description">
+    </p>
+    <p>
+        <label for="year">Year</label>
+        <input formControlName="year" name="year" id="year" placeholder="Year">
+    </p>
+    <p>
+        <label for="duration">Duration</label>
+        <input formControlName="duration" name="duration" id="duration" placeholder="Duration">
+    </p>
+    <p>
+        <label for="budget">Budget</label>
+        <input formControlName="budget" name="budget" id="budget" placeholder="Budget">
+    </p>
+    <p>
+        <label for="gross">Gross</label>
+        <input formControlName="gross" name="gross" id="gross" placeholder="Gross">
+    </p>
+    <p>
+        <label for="rating">Rating</label>
+        <input formControlName="rating" name="rating" id="rating" placeholder="Rating">
+    </p>
+    <p>
+        <label for="video">Video URL</label>
+        <input formControlName="video" name="video" id="video" placeholder="Video URL">
+    </p>
+    <p>
+        <label for="image">Image URL</label>
+        <input formControlName="image" name="image" id="image" placeholder="Image">
+    </p>
+    <button [disabled]="postFormGroup.invalid">Add</button>
+</form>
