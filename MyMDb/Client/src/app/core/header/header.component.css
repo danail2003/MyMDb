@@ -1,0 +1,16 @@
+.nav {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+header {
+    width: 100%;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}

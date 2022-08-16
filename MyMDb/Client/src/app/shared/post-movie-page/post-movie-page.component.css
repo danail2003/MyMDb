@@ -3,3 +3,24 @@
     flex-direction: column;
     align-items: flex-start;
 }
+
+h1 {
+    width: 100%;
+    text-align: center;
+}
+
+.post-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.field {
+    margin-right: 10px;
+}
+
+.description-field {
+    margin-right: 10px;
+    width: 414px;
+}
