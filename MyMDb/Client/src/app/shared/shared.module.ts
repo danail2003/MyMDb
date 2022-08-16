@@ -5,6 +5,11 @@ import { RouterModule } from "@angular/router";
 import { MovieListItemComponent } from "../feature/movies/movie-list-item/movie-list-item.component";
 import { MoviesListComponent } from "../feature/movies/movies-list/movies-list.component";
 import { PostMoviePageComponent } from "./post-movie-page/post-movie-page.component";
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatOptionModule } from "@angular/material/core";
+import { MatSelectModule } from "@angular/material/select";
+import { MatInputModule } from "@angular/material/input";
+import { MatButtonModule } from "@angular/material/button";
 
 @NgModule({
     declarations: [
@@ -16,7 +21,12 @@ import { PostMoviePageComponent } from "./post-movie-page/post-movie-page.compon
         CommonModule,
         RouterModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatOptionModule,
+        MatSelectModule,
+        MatInputModule,
+        MatButtonModule
     ],
     exports: [MovieListItemComponent, MoviesListComponent, PostMoviePageComponent]
 })

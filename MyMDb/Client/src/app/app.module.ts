@@ -11,6 +11,7 @@ import { CoreModule } from './core/core.module';
 import { HomepageComponent } from './shared/homepage/homepage.component';
 import { NotFoundPageComponent } from './shared/not-found-page/not-found-page.component';
 import { SharedModule } from './shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SharedModule } from './shared/shared.module';
     RouterModule,
     AppRoutingModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule
   ],
   providers: [MoviesService],
   bootstrap: [AppComponent, HeaderComponent]
