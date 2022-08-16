@@ -11,8 +11,16 @@ export class MoviesService {
 
   constructor(private httpClient: HttpClient) { }
 
-  loadMovies(): Observable<Movie[]> {
-    return this.httpClient.get<Movie[]>(`${apiUrl}/movies`);
+  loadTopRatedMovies(): Observable<Movie[]> {
+    return this.httpClient.get<Movie[]>(`${apiUrl}/movies/top`);
+  }
+
+  loadMostGrossedMovies(): Observable<Movie[]> {
+    return this.httpClient.get<Movie[]>(`${apiUrl}/movies/most`);
+  }
+
+  loadComingSoonMovies(): Observable<Movie[]> {
+    return this.httpClient.get<Movie[]>(`${apiUrl}/movies/soon`);
   }
 
   createMovie(body: {

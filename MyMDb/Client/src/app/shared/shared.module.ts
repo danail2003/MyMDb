@@ -2,8 +2,6 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
-import { MovieListItemComponent } from "../feature/movies/movie-list-item/movie-list-item.component";
-import { MoviesListComponent } from "../feature/movies/movies-list/movies-list.component";
 import { PostMoviePageComponent } from "./post-movie-page/post-movie-page.component";
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatOptionModule } from "@angular/material/core";

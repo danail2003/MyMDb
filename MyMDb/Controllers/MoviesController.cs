@@ -1,6 +1,7 @@
 ﻿namespace MyMDb.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
+
     using MyMDb.DTO;
     using MyMDb.Services;
 
@@ -15,10 +16,26 @@
             _moviesService = moviesService;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetTopRatedMovies()
+        [HttpGet("top")]
+        public async Task<IActionResult> GetTopRated()
         {
             var result = await _moviesService.GetTopRatedMoviesAsync();
+
+            return Ok(result);
+        }
+
+        [HttpGet("most")]
+        public async Task<IActionResult> GetMostGrossed()
+        {
+            var result = await _moviesService.GetMostGrossedMoviesAsync();
+
+            return Ok(result);
+        }
+
+        [HttpGet("soon")]
+        public async Task<IActionResult> GetComingSoon()
+        {
+            var result = await _moviesService.GetComingSoonMoviesAsync();
 
             return Ok(result);
         }

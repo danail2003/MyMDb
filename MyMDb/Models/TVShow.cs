@@ -19,6 +19,8 @@
         [Required]
         public string Description { get; set; } = string.Empty;
 
+        public bool IsReleased { get; set; }
+
         public int Year { get; set; }
 
         public int Duration { get; set; }
