@@ -9,7 +9,6 @@ import { MoviesService } from 'src/app/core/services/movies.service';
   styleUrls: ['./post-movie-page.component.css']
 })
 export class PostMoviePageComponent implements OnInit {
-
   constructor(private formBuilder: FormBuilder, private moviesService: MoviesService, private router: Router) { }
 
   postFormGroup: FormGroup = this.formBuilder.group({

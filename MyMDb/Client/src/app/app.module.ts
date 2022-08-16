@@ -10,14 +10,14 @@ import { RouterModule } from '@angular/router';
 import { CoreModule } from './core/core.module';
 import { HomepageComponent } from './shared/homepage/homepage.component';
 import { NotFoundPageComponent } from './shared/not-found-page/not-found-page.component';
-import { SharedModule } from './shared/shared.module';
+import { SharedModule } from '../app/shared/shared.module'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FeatureModule } from './feature/feature.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
-    NotFoundPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,6 +26,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
+    FeatureModule,
     BrowserAnimationsModule
   ],
   providers: [MoviesService],

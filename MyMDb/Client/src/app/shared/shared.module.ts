@@ -10,11 +10,11 @@ import { MatOptionModule } from "@angular/material/core";
 import { MatSelectModule } from "@angular/material/select";
 import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
+import { NotFoundPageComponent } from "./not-found-page/not-found-page.component";
 
 @NgModule({
     declarations: [
-        MoviesListComponent,
-        MovieListItemComponent,
+        NotFoundPageComponent,
         PostMoviePageComponent
     ],
     imports: [
@@ -28,6 +28,6 @@ import { MatButtonModule } from "@angular/material/button";
         MatInputModule,
         MatButtonModule
     ],
-    exports: [MovieListItemComponent, MoviesListComponent, PostMoviePageComponent]
+    exports: [PostMoviePageComponent, NotFoundPageComponent]
 })
 export class SharedModule { };

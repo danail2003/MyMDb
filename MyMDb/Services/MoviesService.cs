@@ -4,6 +4,7 @@
 
     using MyMDb.DTO;
     using MyMDb.Models;
+    using MyMDb.Constants;
 
     public class MoviesService : IMoviesService
     {
@@ -16,8 +17,7 @@
 
         public async Task<Guid> CreateMovie(CreateMovieDTO movieDTO)
         {
-            //TODO: make videos embed
-
+            var embedVideoUrl = movieDTO.Video.Replace(Common.ReplacedValueOfVideoUrl, Common.EmbedOfVideoUrl);
             var movie = new Movie
             {
                 Name = movieDTO.Name,
@@ -29,7 +29,7 @@
                 Gross = movieDTO.Gross,
                 Rating = movieDTO.Rating,
                 Image = movieDTO.Image,
-                Video = movieDTO.Video,
+                Video = embedVideoUrl,
                 //Genres = movieDTO.Genres,
                 //Actors = movieDTO.Actors,
             };
@@ -99,7 +99,7 @@
 
         public async Task<IEnumerable<MovieDTO>> GetTopRatedMoviesAsync()
         {
-            return await this.context.Movies.OrderByDescending(x => x.Rating).Take(2).Select(x => new MovieDTO
+            return await this.context.Movies.OrderByDescending(x => x.Rating).Take(250).Select(x => new MovieDTO
             {
                 Id = x.Id,
                 Name = x.Name,
