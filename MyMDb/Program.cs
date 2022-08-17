@@ -13,6 +13,7 @@ builder.Services.AddCors();
 builder.Services.AddControllers();
 builder.Services.AddDbContext<MyMDbContext>(x => x.UseSqlServer(configuration.GetConnectionString(SettingKeys.ConnectionString)));
 builder.Services.AddTransient<IMoviesService, MoviesService>();
+builder.Services.AddTransient<IAuthService, AuthService>();
 
 var app = builder.Build();
 
