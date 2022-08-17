@@ -24,3 +24,7 @@ h1 {
     margin-right: 10px;
     width: 414px;
 }
+
+.error {
+    color: #F44336;
+}

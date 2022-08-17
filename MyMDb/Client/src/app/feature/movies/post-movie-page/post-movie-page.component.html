@@ -1,3 +1,4 @@
+<!-- TODO: Add the remaining messages -->
 <h1>Add Movie</h1>
 <form class="post-form" [formGroup]="postFormGroup" (ngSubmit)="createMovie()">
     <div>
@@ -9,12 +10,42 @@
             <mat-label for="country">Country</mat-label>
             <input matInput formControlName="country" name="country" id="country" placeholder="Country name">
         </mat-form-field>
+        <ng-container *ngIf="postFormGroup.controls['name'].touched && postFormGroup.controls['name'].invalid">
+            <p class="error" *ngIf="postFormGroup.controls['name'].errors?.['required']">
+                Name is required!
+            </p>
+            <p class="error" *ngIf="postFormGroup.controls['name'].errors?.['minlength']">
+                Name must be at least 2 symbols!
+            </p>
+            <p class="error" *ngIf="postFormGroup.controls['name'].errors?.['maxlength']">
+                Name must be less than 50 symbols!
+            </p>
+        </ng-container>
+        <ng-container *ngIf="postFormGroup.controls['country'].touched && postFormGroup.controls['country'].invalid">
+            <p class="error" *ngIf="postFormGroup.controls['country'].errors?.['required']">
+                Country is required!
+            </p>
+            <p class="error" *ngIf="postFormGroup.controls['country'].errors?.['minlength']">
+                Country must be at least 3 symbols!
+            </p>
+            <p class="error" *ngIf="postFormGroup.controls['country'].errors?.['maxlength']">
+                Country must be less than 20 symbols!
+            </p>
+        </ng-container>
     </div>
     <mat-form-field class="description-field" appearance="fill">
         <mat-label for="description">Description</mat-label>
         <textarea matInput formControlName="description" name="description" id="description"
             placeholder="Description"></textarea>
     </mat-form-field>
+    <ng-container *ngIf="postFormGroup.controls['description'].touched && postFormGroup.controls['description'].invalid">
+        <p class="error" *ngIf="postFormGroup.controls['description'].errors?.['required']">
+            Description is required!
+        </p>
+        <p class="error" *ngIf="postFormGroup.controls['description'].errors?.['minlength']">
+            Description must be at least 10 symbols!
+        </p>
+    </ng-container>
     <div>
         <mat-form-field class="field" appearance="fill">
             <mat-label for="releaseDate">Release Date</mat-label>
