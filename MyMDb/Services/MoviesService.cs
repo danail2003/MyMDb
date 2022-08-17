@@ -62,7 +62,7 @@
 
         public async Task<IEnumerable<MovieDTO>> GetComingSoonMoviesAsync()
         {
-            return await this.context.Movies.OrderByDescending(x => x.ReleaseDate).Select(x => new MovieDTO
+            return await this.context.Movies.Where(x => x.ReleaseDate > DateTime.UtcNow).Select(x => new MovieDTO
             {
                 Id = x.Id,
                 Name = x.Name,
