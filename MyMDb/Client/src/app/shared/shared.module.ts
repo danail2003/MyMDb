@@ -1,31 +1,16 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
-import { PostMoviePageComponent } from "./post-movie-page/post-movie-page.component";
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatOptionModule } from "@angular/material/core";
-import { MatSelectModule } from "@angular/material/select";
-import { MatInputModule } from "@angular/material/input";
-import { MatButtonModule } from "@angular/material/button";
 import { NotFoundPageComponent } from "./not-found-page/not-found-page.component";
 
 @NgModule({
     declarations: [
-        NotFoundPageComponent,
-        PostMoviePageComponent
+        NotFoundPageComponent
     ],
     imports: [
         CommonModule,
         RouterModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatOptionModule,
-        MatSelectModule,
-        MatInputModule,
-        MatButtonModule
     ],
-    exports: [PostMoviePageComponent, NotFoundPageComponent]
+    exports: [NotFoundPageComponent]
 })
 export class SharedModule { };

@@ -21,7 +21,6 @@ import { FeatureModule } from './feature/feature.module';
   ],
   imports: [
     BrowserModule,
-    CoreModule,
     RouterModule,
     AppRoutingModule,
     HttpClientModule,

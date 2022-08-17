@@ -1,5 +1,6 @@
 ﻿namespace MyMDb.Services
 {
+    using System.Globalization;
     using Microsoft.EntityFrameworkCore;
 
     using MyMDb.DTO;
@@ -18,6 +19,23 @@
         public async Task<Guid> CreateMovie(CreateMovieDTO movieDTO)
         {
             var embedVideoUrl = movieDTO.Video.Replace(Common.ReplacedValueOfVideoUrl, Common.EmbedOfVideoUrl);
+
+            DateTime? releaseDate = DateTime.UtcNow;
+
+            if (!string.IsNullOrWhiteSpace(movieDTO.ReleaseDate))
+            {
+                var isDateTimeValid = DateTime.TryParseExact(movieDTO.ReleaseDate, "d", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime nonNullDate);
+
+                if (isDateTimeValid)
+                {
+                    releaseDate = nonNullDate;
+                }
+                else
+                {
+                    releaseDate = null;
+                }
+            }
+
             var movie = new Movie
             {
                 Name = movieDTO.Name,
@@ -30,6 +48,8 @@
                 Rating = movieDTO.Rating,
                 Image = movieDTO.Image,
                 Video = embedVideoUrl,
+                ReleaseDate = releaseDate,
+                IsReleased = movieDTO.IsReleased,
                 //Genres = movieDTO.Genres,
                 //Actors = movieDTO.Actors,
             };

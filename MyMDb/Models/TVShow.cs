@@ -14,7 +14,7 @@
         [MaxLength(20)]
         public string Country { get; set; } = string.Empty;
 
-        public DateTime ReleaseDate => DateTime.UtcNow;
+        public DateTime? ReleaseDate { get; set; }
 
         [Required]
         public string Description { get; set; } = string.Empty;

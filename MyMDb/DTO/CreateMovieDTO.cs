@@ -19,6 +19,10 @@
         [MinLength(10)]
         public string Description { get; set; }
 
+        public bool IsReleased { get; set; }
+
+        public string ReleaseDate { get; set; }
+
         [Range(1888, 2023)]
         public int Year { get; set; }
 

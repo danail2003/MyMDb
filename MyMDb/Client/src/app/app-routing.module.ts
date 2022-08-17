@@ -1,7 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { HomepageComponent } from './shared/homepage/homepage.component';
 import { NotFoundPageComponent } from './shared/not-found-page/not-found-page.component';
-import { PostMoviePageComponent } from './shared/post-movie-page/post-movie-page.component';
+import { PostMoviePageComponent } from './feature/movies/post-movie-page/post-movie-page.component';
 
 const routes: Routes = [
   {

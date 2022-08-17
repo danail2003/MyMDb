@@ -15,6 +15,7 @@ export class PostMoviePageComponent implements OnInit {
     'name': new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]),
     'country': new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
     'description': new FormControl('', [Validators.required, Validators.minLength(10)]),
+    'releaseDate': new FormControl('', [Validators.pattern(/^(1[012]|0[1-9])([\/\-])(0[1-9]|[12]\d|3[01])\2((?:19|20)?\d{2})$/g)]),
     'year': new FormControl('', [Validators.required, Validators.min(1888), Validators.max(2023)]),
     'duration': new FormControl(''),
     'budget': new FormControl(''),
