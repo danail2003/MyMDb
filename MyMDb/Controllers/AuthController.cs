@@ -16,12 +16,41 @@
             _authService = authService;
         }
 
-        [HttpPost]
+        [HttpPost("register")]
         public async Task<IActionResult> RegisterUser(UserDTO dto)
         {
+            var isUserAvailable = await _authService.IsUserAvailable(dto.Email);
+
+            if (isUserAvailable)
+            {
+                return BadRequest("User is already exists!");
+            }
+
             var result = await _authService.Register(dto);
 
             return Ok(result);
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(UserDTO dto)
+        {
+            var isUserAvailable = await _authService.IsUserAvailable(dto.Email);
+
+            if (!isUserAvailable)
+            {
+                return BadRequest("User doesn't exist.");
+            }
+
+            var isPasswordCorrect = await _authService.IsPasswordCorrect(dto);
+
+            if (!isPasswordCorrect)
+            {
+                return BadRequest("Password is not correct");
+            }
+
+            var token = _authService.Login(dto);
+
+            return Ok(token);
         }
     }
 }

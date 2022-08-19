@@ -5,5 +5,11 @@
     public interface IAuthService
     {
         Task<Guid> Register(UserDTO dto);
+
+        Task<bool> IsUserAvailable(string email);
+
+        Task<bool> IsPasswordCorrect(UserDTO dto);
+
+        Task<string> Login(UserDTO dto);
     }
 }
