@@ -1,7 +1,10 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using MyMDb.Constants;
 using MyMDb.Models;
 using MyMDb.Services;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +17,18 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<MyMDbContext>(x => x.UseSqlServer(configuration.GetConnectionString(SettingKeys.ConnectionString)));
 builder.Services.AddTransient<IMoviesService, MoviesService>();
 builder.Services.AddTransient<IAuthService, AuthService>();
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetSection("SecretToken:Token").Value)),
+            ValidateIssuer = false,
+            ValidateAudience = false
+
+        };
+    });
 
 var app = builder.Build();
 
@@ -29,6 +44,8 @@ var dataContext = scope.ServiceProvider.GetRequiredService<MyMDbContext>();
 dataContext.Database.Migrate();
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
