@@ -1,7 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
 import { HomepageComponent } from './shared/homepage/homepage.component';
 import { NotFoundPageComponent } from './shared/not-found-page/not-found-page.component';
-import { PostMoviePageComponent } from './feature/movies/post-movie-page/post-movie-page.component';
 
 const routes: Routes = [
   {
@@ -12,10 +11,6 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomepageComponent
-  },
-  {
-    path: 'movies/post',
-    component: PostMoviePageComponent
   },
   {
     path: '**',

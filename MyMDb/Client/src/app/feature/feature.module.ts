@@ -12,11 +12,13 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
 import { PostMoviePageComponent } from './movies/post-movie-page/post-movie-page.component';
+import { MoviesRoutingModule } from './movies-routing.module';
 
 @NgModule({
   declarations: [MoviesListComponent, TopRatedMoviesComponent, ComingSoonMoviesComponent, TopGrossedMoviesComponent, PostMoviePageComponent],
   imports: [
     CommonModule,
+    MoviesRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     MatGridListModule,

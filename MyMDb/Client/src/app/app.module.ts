@@ -1,18 +1,18 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MoviesService } from './core/services/movies.service';
 import { HeaderComponent } from './core/header/header.component';
 import { RouterModule } from '@angular/router';
 import { CoreModule } from './core/core.module';
 import { HomepageComponent } from './shared/homepage/homepage.component';
-import { NotFoundPageComponent } from './shared/not-found-page/not-found-page.component';
 import { SharedModule } from '../app/shared/shared.module'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FeatureModule } from './feature/feature.module';
+import { RegisterComponent } from './auth/register/register.component';
+import { LoginComponent } from './auth/login/login.component';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -22,10 +22,12 @@ import { FeatureModule } from './feature/feature.module';
   imports: [
     BrowserModule,
     RouterModule,
+    CoreModule,
+    FeatureModule,
+    AuthModule,
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
-    FeatureModule,
     BrowserAnimationsModule
   ],
   bootstrap: [AppComponent, HeaderComponent]
