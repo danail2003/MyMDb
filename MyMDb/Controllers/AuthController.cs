@@ -19,6 +19,11 @@
         [HttpPost("register")]
         public async Task<IActionResult> RegisterUser(UserDTO dto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var isUserAvailable = await _authService.IsUserAvailable(dto.Email);
 
             if (isUserAvailable)

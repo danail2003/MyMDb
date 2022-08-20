@@ -1,3 +1,21 @@
+<h1>Register</h1>
 <form [formGroup]="registerFormGroup" (ngSubmit)="register()">
-
+    <mat-form-field class="field" appearance="fill">
+        <mat-label for="email">Email</mat-label>
+        <input matInput formControlName="email" name="email" id="email" placeholder="Email">
+        <div>{{registerFormGroup.get('email')?.errors | json}}</div>
+    </mat-form-field>
+    <mat-form-field class="field" appearance="fill">
+        <mat-label for="password">Password</mat-label>
+        <input matInput formControlName="password" name="password" id="password" placeholder="Password"
+            type="password">
+    </mat-form-field>
+    <div>{{registerFormGroup.get('password')?.errors | json}}</div>
+    <mat-form-field class="field" appearance="fill">
+        <mat-label for="rePassword">Repeat Password</mat-label>
+        <input matInput formControlName="rePassword" name="rePassword" id="rePassword" placeholder="Repeat Password"
+            type="password">
+    </mat-form-field>
+    <div>{{registerFormGroup.get('rePassword')?.errors | json}}</div>
+    <button mat-raised-button color="primary" [disabled]="registerFormGroup.invalid">Add</button>
 </form>

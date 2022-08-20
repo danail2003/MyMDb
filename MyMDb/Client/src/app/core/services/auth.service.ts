@@ -11,7 +11,7 @@ export class AuthService {
   constructor(private httpClient: HttpClient) { }
 
   register(user: CreateUserDTO): Observable<string> {
-    return this.httpClient.post<string>(`${environment.apiUrl}/auth/regiser`, user);
+    return this.httpClient.post<string>(`${environment.apiUrl}/auth/register`, user);
   }
 
   login(user: User): Observable<string> {

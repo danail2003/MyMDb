@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CreateUserDTO } from 'src/app/core/models/createUserDTO';
 import { User } from 'src/app/core/models/user';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { passwordMatch } from '../utils';
 
 @Component({
   selector: 'app-register',
@@ -13,8 +14,12 @@ import { AuthService } from 'src/app/core/services/auth.service';
 export class RegisterComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder) { }
 
-  registerFormGroup: FormGroup = this.formBuilder.group({
+  passwordFormControl = new FormControl('', [Validators.required, Validators.minLength(6)])
 
+  registerFormGroup: FormGroup = this.formBuilder.group({
+    'email': new FormControl('', [Validators.required, Validators.email]),
+    'password': this.passwordFormControl,
+    'rePassword': new FormControl('', [Validators.required, passwordMatch(this.passwordFormControl)])
   });
 
   ngOnInit(): void {
