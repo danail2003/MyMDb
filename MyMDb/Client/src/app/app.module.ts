@@ -28,7 +28,6 @@ import { FeatureModule } from './feature/feature.module';
     FeatureModule,
     BrowserAnimationsModule
   ],
-  providers: [MoviesService],
   bootstrap: [AppComponent, HeaderComponent]
 })
 export class AppModule { }
