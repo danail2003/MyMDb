@@ -37,7 +37,7 @@
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(UserDTO dto)
+        public async Task<IActionResult> Login(LoginUserDTO dto)
         {
             var isUserAvailable = await _authService.IsUserAvailable(dto.Email);
 

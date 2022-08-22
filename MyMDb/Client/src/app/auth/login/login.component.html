@@ -1,1 +1,21 @@
-<p>login works!</p>
+<h1>Login</h1>
+<form [formGroup]="loginFormGroup" (ngSubmit)="login()">
+    <mat-form-field class="field" appearance="fill">
+        <mat-label for="email">Email</mat-label>
+        <input matInput formControlName="email" name="email" id="email" placeholder="Email">
+    </mat-form-field>
+    <ng-container *ngIf="loginFormGroup.controls['email'].touched && loginFormGroup.controls['email'].invalid">
+        <p class="error" *ngIf="loginFormGroup.controls['email'].errors?.['required']">Email is required!</p>
+        <p class="error" *ngIf="loginFormGroup.controls['email'].errors?.['email']">Email is not valid!</p>
+    </ng-container>
+    <mat-form-field class="field" appearance="fill">
+        <mat-label for="password">Password</mat-label>
+        <input matInput formControlName="password" name="password" id="password" placeholder="Password"
+            type="password">
+    </mat-form-field>
+    <ng-container *ngIf="loginFormGroup.controls['password'].touched && loginFormGroup.controls['password'].invalid">
+        <p class="error" *ngIf="loginFormGroup.controls['password'].errors?.['required']">Password is required!</p>
+        <p class="error" *ngIf="loginFormGroup.controls['password'].errors?.['minlength']">Password should be at least 6 symbols!</p>
+    </ng-container>
+    <button mat-raised-button color="primary" [disabled]="loginFormGroup.invalid">Login</button>
+</form>

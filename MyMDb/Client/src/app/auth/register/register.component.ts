@@ -27,15 +27,15 @@ export class RegisterComponent implements OnInit {
 
   register(): void {
     const { email, password, rePassword } = this.registerFormGroup.value;
-    console.log(email, password, rePassword);
 
     const body: CreateUserDTO = {
       email,
       password,
+      repeatPassword: rePassword
     };
 
     this.authService.register(body).subscribe(() => {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/auth/login']);
     })
   }
 }

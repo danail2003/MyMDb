@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CreateUserDTO } from '../models/createUserDTO';
-import { User } from '../models/user';
+import { LoginUserDTO } from '../models/loginUserDto';
 
 @Injectable()
 export class AuthService {
@@ -14,7 +14,7 @@ export class AuthService {
     return this.httpClient.post<string>(`${environment.apiUrl}/auth/register`, user);
   }
 
-  login(user: User): Observable<string> {
-    return this.httpClient.post<string>(`${environment.apiUrl}/auth/login`, user);
+  login(user: LoginUserDTO): Observable<any> {
+    return this.httpClient.post<any>(`${environment.apiUrl}/auth/login`, user);
   }
 }

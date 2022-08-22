@@ -1,4 +1,5 @@
 export interface CreateUserDTO {
     email: string,
-    password: string
+    password: string,
+    repeatPassword: string
 };

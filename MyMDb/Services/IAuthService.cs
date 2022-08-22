@@ -8,8 +8,8 @@
 
         Task<bool> IsUserAvailable(string email);
 
-        Task<bool> IsPasswordCorrect(UserDTO dto);
+        Task<bool> IsPasswordCorrect(LoginUserDTO dto);
 
-        Task<string> Login(UserDTO dto);
+        Task<string> Login(LoginUserDTO dto);
     }
 }

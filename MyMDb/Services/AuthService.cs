@@ -24,6 +24,23 @@
 
         public async Task<Guid> Register(UserDTO dto)
         {
+            var isValidEmail = IsValidEmail(dto.Email);
+
+            if (!isValidEmail)
+            {
+                throw new InvalidOperationException("Email should be valid!");
+            }
+
+            if (string.IsNullOrWhiteSpace(dto.Password) || string.IsNullOrEmpty(dto.RepeatPassword))
+            {
+                throw new InvalidOperationException("Password and Repeat Password should be not null!");
+            }
+
+            if (!dto.Password.Equals(dto.RepeatPassword))
+            {
+                throw new InvalidOperationException("Password and Repeat password must be equal!");
+            }
+
             var hashedPassword = Hash(dto.Password);
 
             var user = new User
@@ -39,6 +56,13 @@
             return user.Id;
         }
 
+        public async Task<string> Login(LoginUserDTO dto)
+        {
+            string token = CreateToken(dto.Email);
+
+            return token;
+        }
+
         private string Hash(string password)
         {
             var bytes = new UTF8Encoding().GetBytes(password);
@@ -49,15 +73,8 @@
         public async Task<bool> IsUserAvailable(string email)
             => await _dbContext.Users.AnyAsync(x => x.Email.Equals(email));
 
-        public async Task<bool> IsPasswordCorrect(UserDTO dto)
+        public async Task<bool> IsPasswordCorrect(LoginUserDTO dto)
             => await _dbContext.Users.AnyAsync(x => x.Email.Equals(dto.Email) && x.Password.Equals(Hash(dto.Password)));
-
-        public async Task<string> Login(UserDTO dto)
-        {
-            string token = CreateToken(dto.Email);
-
-            return token;
-        }
 
         private string CreateToken(string email)
         {
@@ -73,6 +90,25 @@
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
 
             return jwt;
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            var trimmedEmail = email.Trim();
+
+            if (trimmedEmail.EndsWith("."))
+            {
+                return false;
+            }
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == trimmedEmail;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

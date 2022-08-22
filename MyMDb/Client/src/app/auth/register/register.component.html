@@ -26,5 +26,5 @@
         <p class="error" *ngIf="registerFormGroup.controls['rePassword'].errors?.['required']">Repeat password is required!</p>
         <p class="error" *ngIf="registerFormGroup.controls['rePassword'].errors?.['passwordMatch']">Password and Repeat password must be same!</p>
     </ng-container>
-    <button mat-raised-button color="primary" [disabled]="registerFormGroup.invalid">Add</button>
+    <button mat-raised-button color="primary" [disabled]="registerFormGroup.invalid">Register</button>
 </form>
