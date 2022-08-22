@@ -17,10 +17,10 @@ export class PostMoviePageComponent implements OnInit {
     'description': new FormControl('', [Validators.required, Validators.minLength(10)]),
     'releaseDate': new FormControl('', [Validators.pattern(/^(1[012]|0[1-9])([\/\-])(0[1-9]|[12]\d|3[01])\2((?:19|20)?\d{2})$/g)]),
     'year': new FormControl('', [Validators.required, Validators.min(1888), Validators.max(2023)]),
-    'duration': new FormControl('', [Validators.required]),
-    'budget': new FormControl('', [Validators.required]),
-    'gross': new FormControl('', [Validators.required]),
-    'rating': new FormControl('', [Validators.required, Validators.min(1), Validators.max(10)]),
+    'duration': new FormControl('', [Validators.required, Validators.pattern(/^[0-9]$/g)]),
+    'budget': new FormControl('', [Validators.required, Validators.pattern(/^[0-9]$/g)]),
+    'gross': new FormControl('', [Validators.required, Validators.pattern(/^[0-9]$/g)]),
+    'rating': new FormControl('', [Validators.required, Validators.pattern(/^[0-9]$/g), Validators.min(1), Validators.max(10)]),
     'video': new FormControl('', [Validators.required, Validators.pattern(/^http/g)]),
     'image': new FormControl('', [Validators.required, Validators.pattern(/^http/g)])
   });

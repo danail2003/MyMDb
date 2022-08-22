@@ -1,4 +1,3 @@
-<!-- TODO: Add the remaining messages -->
 <h1>Add Movie</h1>
 <form class="post-form" [formGroup]="postFormGroup" (ngSubmit)="createMovie()">
     <div>
@@ -15,10 +14,10 @@
                 Name is required!
             </p>
             <p class="error" *ngIf="postFormGroup.controls['name'].errors?.['minlength']">
-                Name must be at least 2 symbols!
+                Name should be at least 2 symbols!
             </p>
             <p class="error" *ngIf="postFormGroup.controls['name'].errors?.['maxlength']">
-                Name must be less than 50 symbols!
+                Name should be less than 50 symbols!
             </p>
         </ng-container>
         <ng-container *ngIf="postFormGroup.controls['country'].touched && postFormGroup.controls['country'].invalid">
@@ -26,10 +25,10 @@
                 Country is required!
             </p>
             <p class="error" *ngIf="postFormGroup.controls['country'].errors?.['minlength']">
-                Country must be at least 3 symbols!
+                Country should be at least 3 symbols!
             </p>
             <p class="error" *ngIf="postFormGroup.controls['country'].errors?.['maxlength']">
-                Country must be less than 20 symbols!
+                Country should be less than 20 symbols!
             </p>
         </ng-container>
     </div>
@@ -43,7 +42,7 @@
             Description is required!
         </p>
         <p class="error" *ngIf="postFormGroup.controls['description'].errors?.['minlength']">
-            Description must be at least 10 symbols!
+            Description should be at least 10 symbols!
         </p>
     </ng-container>
     <div>
@@ -55,6 +54,25 @@
             <mat-label for="year">Year</mat-label>
             <input matInput formControlName="year" name="year" id="year">
         </mat-form-field>
+        <ng-container *ngIf="postFormGroup.controls['releaseDate'].touched && postFormGroup.controls['releaseDate'].invalid">
+            <p class="error" *ngIf="postFormGroup.controls['releaseDate'].errors?.['required']">
+                Release date is required!
+            </p>
+            <p class="error" *ngIf="postFormGroup.controls['releaseDate'].errors?.['pattern']">
+                Release date should be in this format MM/dd/yyyy!
+            </p>
+        </ng-container>
+        <ng-container *ngIf="postFormGroup.controls['year'].touched && postFormGroup.controls['year'].invalid">
+            <p class="error" *ngIf="postFormGroup.controls['year'].errors?.['required']">
+                Year is required!
+            </p>
+            <p class="error" *ngIf="postFormGroup.controls['year'].errors?.['min']">
+                Year shouldn't be before 1888!
+            </p>
+            <p class="error" *ngIf="postFormGroup.controls['year'].errors?.['max']">
+                Year shouldn't be after 2023!
+            </p>
+        </ng-container>
     </div>
     <div>
         <mat-form-field class="field" appearance="fill">
@@ -81,6 +99,22 @@
             <mat-label for="budget">Budget</mat-label>
             <input matInput formControlName="budget" name="budget" id="budget">
         </mat-form-field>
+        <ng-container *ngIf="postFormGroup.controls['duration'].touched && postFormGroup.controls['duration'].invalid">
+            <p class="error" *ngIf="postFormGroup.controls['duration'].errors?.['required']">
+                Duration is required!
+            </p>
+            <p class="error" *ngIf="postFormGroup.controls['duration'].errors?.['pattern']">
+                Duration should be number!
+            </p>
+        </ng-container>
+        <ng-container *ngIf="postFormGroup.controls['budget'].touched && postFormGroup.controls['budget'].invalid">
+            <p class="error" *ngIf="postFormGroup.controls['budget'].errors?.['required']">
+                Budget is required!
+            </p>
+            <p class="error" *ngIf="postFormGroup.controls['budget'].errors?.['pattern']">
+                Budget should be number!
+            </p>
+        </ng-container>
     </div>
     <div>
         <mat-form-field class="field" appearance="fill">
@@ -91,6 +125,28 @@
             <mat-label for="rating">Rating</mat-label>
             <input matInput formControlName="rating" name="rating" id="rating">
         </mat-form-field>
+        <ng-container *ngIf="postFormGroup.controls['gross'].touched && postFormGroup.controls['gross'].invalid">
+            <p class="error" *ngIf="postFormGroup.controls['gross'].errors?.['required']">
+                Gross is required!
+            </p>
+            <p class="error" *ngIf="postFormGroup.controls['gross'].errors?.['pattern']">
+                Gross should be number!
+            </p>
+        </ng-container>
+        <ng-container *ngIf="postFormGroup.controls['rating'].touched && postFormGroup.controls['rating'].invalid">
+            <p class="error" *ngIf="postFormGroup.controls['rating'].errors?.['required']">
+                Rating is required!
+            </p>
+            <p class="error" *ngIf="postFormGroup.controls['rating'].errors?.['pattern']">
+                Rating should be number!
+            </p>
+            <p class="error" *ngIf="postFormGroup.controls['rating'].errors?.['min']">
+                Rating shouldn't be below 1!
+            </p>
+            <p class="error" *ngIf="postFormGroup.controls['rating'].errors?.['max']">
+                Rating shouldn't be above 10!
+            </p>
+        </ng-container>
     </div>
     <div>
         <mat-form-field class="field" appearance="fill">
@@ -101,6 +157,22 @@
             <mat-label for="video">Video URL</mat-label>
             <input matInput formControlName="video" name="video" id="video">
         </mat-form-field>
+        <ng-container *ngIf="postFormGroup.controls['image'].touched && postFormGroup.controls['image'].invalid">
+            <p class="error" *ngIf="postFormGroup.controls['image'].errors?.['required']">
+                Image is required!
+            </p>
+            <p class="error" *ngIf="postFormGroup.controls['image'].errors?.['pattern']">
+                Image should start with http/https!
+            </p>
+        </ng-container>
+        <ng-container *ngIf="postFormGroup.controls['video'].touched && postFormGroup.controls['video'].invalid">
+            <p class="error" *ngIf="postFormGroup.controls['video'].errors?.['required']">
+                Image is required!
+            </p>
+            <p class="error" *ngIf="postFormGroup.controls['video'].errors?.['pattern']">
+                Video should start with http/https!
+            </p>
+        </ng-container>
     </div>
 
     <button mat-raised-button color="primary" [disabled]="postFormGroup.invalid">Add</button>
