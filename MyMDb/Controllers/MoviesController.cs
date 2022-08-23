@@ -1,5 +1,6 @@
 ﻿namespace MyMDb.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     using MyMDb.DTO;
@@ -40,7 +41,7 @@
             return Ok(result);
         }
 
-        [HttpPost]
+        [HttpPost, Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateMovie(CreateMovieDTO dto)
         {
             var result = await _moviesService.CreateMovie(dto);

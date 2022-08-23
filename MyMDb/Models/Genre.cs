@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyMDb.Models
 {
@@ -11,9 +10,8 @@ namespace MyMDb.Models
         [MaxLength(20)]
         public string Name { get; set; } = string.Empty;
 
-        [ForeignKey(nameof(Movie))]
-        public Guid MovieId { get; set; }
+        public ICollection<Movie> Movies { get; set; } = new HashSet<Movie>();
 
-        public Movie Movie { get; set; }
+        public ICollection<TVShow> TVShows { get; set; } = new HashSet<TVShow>();
     }
 }

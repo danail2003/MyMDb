@@ -5,8 +5,8 @@ import { Observable } from "rxjs";
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const token = document.cookie;
-        console.log(token);
+        const index = document.cookie.indexOf('=');
+        const token = document.cookie.substring(index + 1);
 
         if (token) {
             req = req.clone({

@@ -1,9 +1,9 @@
 ﻿namespace MyMDb.Services
 {
-    using System.IdentityModel.Tokens.Jwt;
+    using System.Text;
     using System.Security.Claims;
     using System.Security.Cryptography;
-    using System.Text;
+    using System.IdentityModel.Tokens.Jwt;
 
     using Microsoft.EntityFrameworkCore;
     using Microsoft.IdentityModel.Tokens;
@@ -46,7 +46,8 @@
             var user = new User
             {
                 Email = dto.Email,
-                Password = hashedPassword
+                Password = hashedPassword,
+                RoleId = 0
             };
 
             await _dbContext.Users.AddAsync(user);
@@ -58,7 +59,7 @@
 
         public async Task<string> Login(LoginUserDTO dto)
         {
-            string token = CreateToken(dto.Email);
+            string token = CreateToken(dto.Email, dto.Role);
 
             return token;
         }
@@ -76,11 +77,12 @@
         public async Task<bool> IsPasswordCorrect(LoginUserDTO dto)
             => await _dbContext.Users.AnyAsync(x => x.Email.Equals(dto.Email) && x.Password.Equals(Hash(dto.Password)));
 
-        private string CreateToken(string email)
+        private string CreateToken(string email, string role)
         {
             List<Claim> claims = new()
             {
                 new Claim(ClaimTypes.Email, email),
+                new Claim(ClaimTypes.Role, role)
             };
 
             var key = Encoding.UTF8.GetBytes(_configuration.GetSection("SecretToken:Token").Value);

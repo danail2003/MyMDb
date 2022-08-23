@@ -33,6 +33,8 @@ namespace MyMDb.Models
 
         public DbSet<Movie> Movies { get; set; }
 
+        public DbSet<MovieGenre> MovieGenres { get; set; }
+
         public DbSet<Actor> Actors { get; set; }
 
         public DbSet<MovieActor> MoviesActors { get; set; }
@@ -43,11 +45,15 @@ namespace MyMDb.Models
 
         public DbSet<TVShow> TVShows { get; set; }
 
+        public DbSet<TVShowGenre> TVShowGenres { get; set; }
+
         public DbSet<UserTVShow> UserTVShows { get; set; }
 
         public DbSet<TVShowActor> TVShowActors { get; set; }
 
         public DbSet<Episode> Episodes { get; set; }
+
+        public DbSet<Role> Roles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -56,6 +62,8 @@ namespace MyMDb.Models
             modelBuilder.Entity<UserActor>().HasKey(x => new { x.UserId, x.ActorId });
             modelBuilder.Entity<UserTVShow>().HasKey(x => new {x.TVShowId, x.UserId});
             modelBuilder.Entity<TVShowActor>().HasKey(x => new { x.ActorId, x.TVShowId });
+            modelBuilder.Entity<MovieGenre>().HasKey(x => new { x.MovieId, x.GenreId });
+            modelBuilder.Entity<TVShowGenre>().HasKey(x => new { x.TVShowId, x.GenreId });
 
             modelBuilder.Entity<User>().HasMany(x => x.RatedMovies).WithOne(x => x.User).OnDelete(DeleteBehavior.Restrict);
             modelBuilder.Entity<Episode>().HasOne(x => x.TVShow).WithMany(x => x.Episodes).OnDelete(DeleteBehavior.Restrict);
