@@ -7,7 +7,6 @@ import { LoginUserDTO } from '../models/loginUserDto';
 
 @Injectable()
 export class AuthService {
-
   constructor(private httpClient: HttpClient) { }
 
   register(user: CreateUserDTO): Observable<string> {
@@ -16,5 +15,9 @@ export class AuthService {
 
   login(user: LoginUserDTO): Observable<any> {
     return this.httpClient.post<any>(`${environment.apiUrl}/auth/login`, user);
+  }
+
+  logout(): void {
+    document.cookie = 'session=;expires=Thu, 01 Jan 1970 00:00:01 GMT';
   }
 }

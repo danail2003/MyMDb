@@ -47,7 +47,7 @@
             {
                 Email = dto.Email,
                 Password = hashedPassword,
-                RoleId = 0
+                RoleId = 1
             };
 
             await _dbContext.Users.AddAsync(user);
@@ -59,7 +59,9 @@
 
         public async Task<string> Login(LoginUserDTO dto)
         {
-            string token = CreateToken(dto.Email, dto.Role);
+            var role = this.GetUserRole(dto.Email).Result;
+
+            string token = CreateToken(dto.Email, role);
 
             return token;
         }
@@ -111,6 +113,18 @@
             {
                 return false;
             }
+        }
+
+        public async Task<string> GetUserRole(string email)
+        {
+            var user = await _dbContext.Users.Include(x => x.Role).FirstOrDefaultAsync(x => x.Email == email);
+
+            if (user == null)
+            {
+                throw new InvalidOperationException("User doesn't exists!");
+            }
+
+            return user.Role.Name;
         }
     }
 }

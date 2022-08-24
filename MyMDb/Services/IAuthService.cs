@@ -6,10 +6,12 @@
     {
         Task<Guid> Register(UserDTO dto);
 
+        Task<string> Login(LoginUserDTO dto);
+
         Task<bool> IsUserAvailable(string email);
 
         Task<bool> IsPasswordCorrect(LoginUserDTO dto);
 
-        Task<string> Login(LoginUserDTO dto);
+        Task<string> GetUserRole(string email);
     }
 }

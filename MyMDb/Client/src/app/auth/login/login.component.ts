@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
       password
     };
 
-    this.authService.login(body).subscribe((token) => {      
+    this.authService.login(body).subscribe((token) => {
       document.cookie = `session=${token.result}`;
 
       this.router.navigate(['/']);
