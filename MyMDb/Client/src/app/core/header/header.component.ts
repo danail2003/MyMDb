@@ -10,19 +10,20 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class HeaderComponent implements OnInit {
   currentUser!: any;
-  isLogged!: boolean;
 
   constructor(private authService: AuthService, private router: Router) { }
+
+  get isLogged(): boolean {
+    return this.authService.isLogged;
+  }
 
   ngOnInit(): void {
     const token = document.cookie;
 
     if (!token) {
-      this.isLogged = false;
       return;
     }
 
-    this.isLogged = true;
     const helper = new JwtHelperService();
 
     let decodedToken = helper.decodeToken(token);
