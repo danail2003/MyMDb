@@ -17,6 +17,8 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<MyMDbContext>(x => x.UseSqlServer(configuration.GetConnectionString(SettingKeys.ConnectionString)));
 builder.Services.AddTransient<IMoviesService, MoviesService>();
 builder.Services.AddTransient<IAuthService, AuthService>();
+builder.Services.AddTransient<IMoviesScraper, MoviesScraper>();
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
