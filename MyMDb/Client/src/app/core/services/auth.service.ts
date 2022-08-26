@@ -24,4 +24,14 @@ export class AuthService {
     this.isLogged = false;
     document.cookie = 'session=;expires=Thu, 01 Jan 1970 00:00:01 GMT';
   }
+
+  authenticate(): boolean {
+    const token = document.cookie;
+
+    if (!token) {
+      return this.isLogged = false;
+    }
+
+    return this.isLogged = true;
+  }
 }
