@@ -14,11 +14,11 @@
 
         public int Year { get; set; }
 
-        public int Duration { get; set; }
+        public string Duration { get; set; }
 
-        public int Budget { get; set; }
+        public string Budget { get; set; }
 
-        public int Gross { get; set; }
+        public string Gross { get; set; }
 
         public double Rating { get; set; }
 

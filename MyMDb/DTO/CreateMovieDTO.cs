@@ -26,11 +26,11 @@
         [Range(1888, 2023)]
         public int Year { get; set; }
 
-        public int Duration { get; set; }
+        public string Duration { get; set; }
 
-        public int Budget { get; set; }
+        public string Budget { get; set; }
 
-        public int Gross { get; set; }
+        public string Gross { get; set; }
 
         [Range(1, 10)]
         public double Rating { get; set; }
