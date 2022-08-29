@@ -4,5 +4,6 @@
     {
         public const string ReplacedValueOfVideoUrl = "watch?v=";
         public const string EmbedOfVideoUrl = "embed/";
+        public const string IMDbLink = "https://www.imdb.com";
     }
 }
