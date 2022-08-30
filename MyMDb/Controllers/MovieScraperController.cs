@@ -16,11 +16,11 @@
         }
 
         [HttpGet]
-        public async Task<IActionResult> ScrapeMovies()
+        public IActionResult ScrapeMovies()
         {
-            var result = await _movieScraper.ScrapeIMDbMovies();
+            _movieScraper.ScrapeIMDbMovies();
 
-            return Ok(result);
+            return Ok();
         }
     }
 }

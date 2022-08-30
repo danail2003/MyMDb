@@ -2,6 +2,6 @@
 {
     public interface IMoviesScraper
     {
-        Task<int> ScrapeIMDbMovies();
+        void ScrapeIMDbMovies();
     }
 }
