@@ -32,5 +32,7 @@
         public ICollection<UserActor> UsersActors { get; set; } = new HashSet<UserActor>();
 
         public ICollection<MovieActor> Movies { get; set; } = new HashSet<MovieActor>();
+
+        public ICollection<TVShowActor> ActorTVShows { get; set; } = new HashSet<TVShowActor>();
     }
 }

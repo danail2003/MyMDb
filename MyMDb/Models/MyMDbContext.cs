@@ -51,8 +51,6 @@ namespace MyMDb.Models
 
         public DbSet<TVShowActor> TVShowActors { get; set; }
 
-        public DbSet<Episode> Episodes { get; set; }
-
         public DbSet<Role> Roles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -66,7 +64,6 @@ namespace MyMDb.Models
             modelBuilder.Entity<TVShowGenre>().HasKey(x => new { x.TVShowId, x.GenreId });
 
             modelBuilder.Entity<User>().HasMany(x => x.RatedMovies).WithOne(x => x.User).OnDelete(DeleteBehavior.Restrict);
-            modelBuilder.Entity<Episode>().HasOne(x => x.TVShow).WithMany(x => x.Episodes).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

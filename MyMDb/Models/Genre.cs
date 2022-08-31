@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace MyMDb.Models
+﻿namespace MyMDb.Models
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class Genre
     {
         public int Id { get; set; }
@@ -10,8 +10,8 @@ namespace MyMDb.Models
         [MaxLength(20)]
         public string Name { get; set; } = string.Empty;
 
-        public ICollection<Movie> Movies { get; set; } = new HashSet<Movie>();
+        public ICollection<MovieGenre> GenresMovies { get; set; } = new HashSet<MovieGenre>();
 
-        public ICollection<TVShow> TVShows { get; set; } = new HashSet<TVShow>();
+        public ICollection<TVShowGenre> GenresTVShows { get; set; } = new HashSet<TVShowGenre>();
     }
 }

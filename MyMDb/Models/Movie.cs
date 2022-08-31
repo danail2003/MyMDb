@@ -35,7 +35,7 @@
 
         public string Image { get; set; } = string.Empty;
 
-        public ICollection<Genre> Genres { get; set; } = new HashSet<Genre>();
+        public ICollection<MovieGenre> MovieGenres { get; set; } = new HashSet<MovieGenre>();
 
         public ICollection<MovieActor> Actors { get; set; } = new HashSet<MovieActor>();
 

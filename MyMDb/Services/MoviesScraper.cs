@@ -1,7 +1,5 @@
 ﻿namespace MyMDb.Services
 {
-    using System.Globalization;
-
     using Microsoft.EntityFrameworkCore;
     using AngleSharp;
     using AngleSharp.Dom;
@@ -43,16 +41,66 @@
 
             var isTVShow = CheckWhetherDocumentIsTVShow(production);
 
-            int counter = 0;
-            SetProduction(isTVShow, productionItems, genres, actors, ref counter);
+            List<Movie> movies = new();
+            List<TVShow> tvShows = new();
+
+            SetProduction(isTVShow, productionItems, genres, actors, movies, tvShows);
         }
 
-        private void SetProduction(bool isTVShow, Dictionary<string, string> productionItems, List<string> genres, List<Actor> actors, ref int counter)
+        private void SetProduction(bool isTVShow, Dictionary<string, string> productionItems,
+            ICollection<string> genres, List<Actor> actors, List<Movie> movies, List<TVShow> tVShows)
         {
-            counter++;
+            var title = productionItems["Title"];
+
+            if (_dbContext.Movies.Any(x => x.Name == title) || _dbContext.TVShows.Any(x => x.Name == title))
+            {
+                return;
+            }
+
+            if (isTVShow)
+            {
+                TVShow tvShow = null;
+
+                foreach (var genreName in genres)
+                {
+                    tvShow.TVShowGenres.Add(new TVShowGenre
+                    {
+                        Genre = new Genre
+                        {
+                            Name = genreName,
+                        },
+                        TVShow = tvShow
+                    });
+                }
+
+                foreach (var actorName in actors)
+                {
+                    
+                }
+            }
+            else
+            {
+                movies.Add(new Movie
+                {
+                    Name = title,
+                    Budget = productionItems["Budget"],
+                    Country = productionItems["Country"],
+                    Gross = productionItems["Gross"],
+                    
+                    Description = productionItems["Description"],
+                    Duration = productionItems["Duration"],
+                    ReleaseDate = DateTime.Parse(productionItems["ReleaseDate"]),
+                    Rating = double.Parse(productionItems["Rating"]),
+                    Year = int.Parse(productionItems["Year"]),
+                    Image = productionItems["Image"],
+                    Video = productionItems["Video"],
+                    Actors = (ICollection<MovieActor>)actors,
+                    IsReleased = DateTime.Parse(productionItems["ReleaseDate"]) > DateTime.Now
+                });
+            }
         }
 
-        private List<string> GetGenres(IDocument document)
+        private static ICollection<string> GetGenres(IDocument document)
         {
             var genres = document.QuerySelectorAll(".sc-16ede01-3").Select(x => x.TextContent).ToList();
 

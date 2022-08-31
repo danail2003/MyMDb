@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyMDb.Models;
 
@@ -11,9 +12,10 @@ using MyMDb.Models;
 namespace MyMDb.Migrations
 {
     [DbContext(typeof(MyMDbContext))]
-    partial class MyMDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220831145220_RepairedWrongRelationshipsBetweenGenreAndTVShow")]
+    partial class RepairedWrongRelationshipsBetweenGenreAndTVShow
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,6 +23,21 @@ namespace MyMDb.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("GenreMovie", b =>
+                {
+                    b.Property<int>("GenresId")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("MoviesId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("GenresId", "MoviesId");
+
+                    b.HasIndex("MoviesId");
+
+                    b.ToTable("GenreMovie");
+                });
 
             modelBuilder.Entity("MyMDb.Models.Actor", b =>
                 {
@@ -341,6 +358,21 @@ namespace MyMDb.Migrations
                     b.ToTable("UserTVShows");
                 });
 
+            modelBuilder.Entity("GenreMovie", b =>
+                {
+                    b.HasOne("MyMDb.Models.Genre", null)
+                        .WithMany()
+                        .HasForeignKey("GenresId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyMDb.Models.Movie", null)
+                        .WithMany()
+                        .HasForeignKey("MoviesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("MyMDb.Models.MovieActor", b =>
                 {
                     b.HasOne("MyMDb.Models.Actor", "Actor")
@@ -363,13 +395,13 @@ namespace MyMDb.Migrations
             modelBuilder.Entity("MyMDb.Models.MovieGenre", b =>
                 {
                     b.HasOne("MyMDb.Models.Genre", "Genre")
-                        .WithMany("GenresMovies")
+                        .WithMany()
                         .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("MyMDb.Models.Movie", "Movie")
-                        .WithMany("MovieGenres")
+                        .WithMany()
                         .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -382,13 +414,13 @@ namespace MyMDb.Migrations
             modelBuilder.Entity("MyMDb.Models.TVShowActor", b =>
                 {
                     b.HasOne("MyMDb.Models.Actor", "Actor")
-                        .WithMany("ActorTVShows")
+                        .WithMany()
                         .HasForeignKey("ActorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("MyMDb.Models.TVShow", "TVShow")
-                        .WithMany("TVShowActors")
+                        .WithMany("Actors")
                         .HasForeignKey("TVShowId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -491,8 +523,6 @@ namespace MyMDb.Migrations
 
             modelBuilder.Entity("MyMDb.Models.Actor", b =>
                 {
-                    b.Navigation("ActorTVShows");
-
                     b.Navigation("Movies");
 
                     b.Navigation("UsersActors");
@@ -500,16 +530,12 @@ namespace MyMDb.Migrations
 
             modelBuilder.Entity("MyMDb.Models.Genre", b =>
                 {
-                    b.Navigation("GenresMovies");
-
                     b.Navigation("GenresTVShows");
                 });
 
             modelBuilder.Entity("MyMDb.Models.Movie", b =>
                 {
                     b.Navigation("Actors");
-
-                    b.Navigation("MovieGenres");
 
                     b.Navigation("UsersMovie");
                 });
@@ -521,7 +547,7 @@ namespace MyMDb.Migrations
 
             modelBuilder.Entity("MyMDb.Models.TVShow", b =>
                 {
-                    b.Navigation("TVShowActors");
+                    b.Navigation("Actors");
 
                     b.Navigation("TVShowGenres");
 

@@ -35,11 +35,9 @@
 
         public string Image { get; set; } = string.Empty;
 
-        public ICollection<Episode> Episodes { get; set; } = new HashSet<Episode>();
+        public ICollection<TVShowGenre> TVShowGenres { get; set; } = new HashSet<TVShowGenre>();
 
-        public ICollection<Genre> Genres { get; set; } = new HashSet<Genre>();
-
-        public ICollection<TVShowActor> Actors { get; set; } = new HashSet<TVShowActor>();
+        public ICollection<TVShowActor> TVShowActors { get; set; } = new HashSet<TVShowActor>();
 
         public ICollection<UserTVShow> UsersTVShow { get; set; } = new HashSet<UserTVShow>();
     }
