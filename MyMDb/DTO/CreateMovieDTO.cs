@@ -1,6 +1,5 @@
 ﻿namespace MyMDb.DTO
 {
-    using MyMDb.Models;
     using System.ComponentModel.DataAnnotations;
 
     public class CreateMovieDTO
@@ -24,7 +23,7 @@
         public string ReleaseDate { get; set; }
 
         [Range(1888, 2023)]
-        public int Year { get; set; }
+        public string Year { get; set; }
 
         public string Duration { get; set; }
 
@@ -40,9 +39,5 @@
 
         [Required]
         public string Image { get; set; }
-
-        //public ICollection<Genre> Genres { get; set; }
-
-        //public ICollection<MovieActor> Actors { get; set; }
     }
 }

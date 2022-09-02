@@ -25,22 +25,6 @@
             return Ok(result);
         }
 
-        [HttpGet("most")]
-        public async Task<IActionResult> GetMostGrossed()
-        {
-            var result = await _moviesService.GetMostGrossedMoviesAsync();
-
-            return Ok(result);
-        }
-
-        [HttpGet("soon")]
-        public async Task<IActionResult> GetComingSoon()
-        {
-            var result = await _moviesService.GetComingSoonMoviesAsync();
-
-            return Ok(result);
-        }
-
         [HttpPost, Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateMovie(CreateMovieDTO dto)
         {

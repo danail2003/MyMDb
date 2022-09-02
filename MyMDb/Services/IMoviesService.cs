@@ -9,10 +9,6 @@ namespace MyMDb.Services
 
         Task<IEnumerable<MovieDTO>> GetTopRatedMoviesAsync();
 
-        Task<IEnumerable<MovieDTO>> GetMostGrossedMoviesAsync();
-
-        Task<IEnumerable<MovieDTO>> GetComingSoonMoviesAsync();
-
         Task<Guid> CreateMovie(CreateMovieDTO movieDTO);
     }
 }

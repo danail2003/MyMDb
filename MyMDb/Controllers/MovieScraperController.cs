@@ -18,7 +18,7 @@
         [HttpGet]
         public IActionResult ScrapeMovies()
         {
-            _movieScraper.ScrapeIMDbMovies();
+            _movieScraper.PopulateDbWithMoviesAndTVShows();
 
             return Ok();
         }

@@ -2,6 +2,6 @@
 {
     public interface IMoviesScraper
     {
-        void ScrapeIMDbMovies();
+        void PopulateDbWithMoviesAndTVShows();
     }
 }

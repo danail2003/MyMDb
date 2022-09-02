@@ -21,7 +21,5 @@
         public ICollection<UserMovie> RatedMovies { get; set; } = new HashSet<UserMovie>();
 
         public ICollection<UserMovie> WatchList { get; set; } = new HashSet<UserMovie>();
-
-        public ICollection<UserActor> UsersActors { get; set; } = new HashSet<UserActor>();
     }
 }
