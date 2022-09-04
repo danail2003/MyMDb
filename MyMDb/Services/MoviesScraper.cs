@@ -76,7 +76,7 @@
             var descriptions = document.QuerySelectorAll(".lister-item-content").Select(x => x.Children[3].TextContent.Trim()).ToList();
             var ratings = document.QuerySelectorAll(".ratings-imdb-rating").Select(x => x.Children[1].TextContent).ToList();
             var durations = document.QuerySelectorAll(".runtime").Select(x => x.TextContent).ToList();
-            var images = document.QuerySelectorAll(".loadlate").Select(x => x.GetAttribute("src")).ToList();
+            var images = document.QuerySelectorAll("img").Select(x => x.GetAttribute("src"));
 
             var movieItems = new Dictionary<string, List<string>>
             {
@@ -85,7 +85,7 @@
                 { "Rating", ratings },
                 { "Year", years },
                 { "Duration", durations },
-                { "Image", images }
+                //{ "Image", images }
             };
 
             return movieItems;

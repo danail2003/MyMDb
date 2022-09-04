@@ -9,22 +9,14 @@ import { MoviesService } from 'src/app/core/services/movies.service';
 })
 export class MoviesListComponent implements OnInit {
   topRatedMovies!: Movie[];
-  mostGrossedMovies!: Movie[];
-  comingSoonMovies!: Movie[];
 
   constructor(private moviesService: MoviesService) { }
 
   ngOnInit(): void {
     this.moviesService.loadTopRatedMovies().subscribe(movies => {
+      console.log(movies);
+      
       this.topRatedMovies = movies;
-    });
-
-    this.moviesService.loadMostGrossedMovies().subscribe(movies => {
-      this.mostGrossedMovies = movies;
-    });
-
-    this.moviesService.loadComingSoonMovies().subscribe(movies => {
-      this.comingSoonMovies = movies;
     });
   }
 }

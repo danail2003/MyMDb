@@ -4,8 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MoviesListComponent } from './movies/movies-list/movies-list.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { TopRatedMoviesComponent } from './movies/top-rated-movies/top-rated-movies.component';
-import { ComingSoonMoviesComponent } from './movies/coming-soon-movies/coming-soon-movies.component';
-import { TopGrossedMoviesComponent } from './movies/top-grossed-movies/top-grossed-movies.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatOptionModule } from "@angular/material/core";
 import { MatSelectModule } from "@angular/material/select";
@@ -15,7 +13,7 @@ import { PostMoviePageComponent } from './movies/post-movie-page/post-movie-page
 import { MoviesRoutingModule } from './movies-routing.module';
 
 @NgModule({
-  declarations: [MoviesListComponent, TopRatedMoviesComponent, ComingSoonMoviesComponent, TopGrossedMoviesComponent, PostMoviePageComponent],
+  declarations: [MoviesListComponent, TopRatedMoviesComponent, PostMoviePageComponent],
   imports: [
     CommonModule,
     MoviesRoutingModule,
