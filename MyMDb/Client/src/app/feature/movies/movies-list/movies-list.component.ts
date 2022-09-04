@@ -14,8 +14,6 @@ export class MoviesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.moviesService.loadTopRatedMovies().subscribe(movies => {
-      console.log(movies);
-      
       this.topRatedMovies = movies;
     });
   }

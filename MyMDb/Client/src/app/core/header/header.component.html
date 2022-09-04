@@ -4,7 +4,7 @@
             <ul class="nav">
                 <li><a routerLink="/">Home</a></li>
                 <li><a routerLink="/movies/list">Movies List</a></li>
-                <li><a routerLink="/movies/post">Add movie</a></li>
+                <li *ngIf="isAdmin"><a routerLink="/movies/post">Add movie</a></li>
                 <li *ngIf="!isLogged"><a routerLink="/auth/login">Login</a></li>
                 <li *ngIf="!isLogged"><a routerLink="/auth/register">Register</a></li>
                 <div *ngIf="isLogged">

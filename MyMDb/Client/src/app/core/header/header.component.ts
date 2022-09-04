@@ -17,6 +17,10 @@ export class HeaderComponent implements OnInit {
     return this.authService.isLogged;
   }
 
+  get isAdmin(): boolean {
+    return this.authService.isAdmin;
+  }
+
   ngOnInit(): void {
     const token = document.cookie;
 
@@ -30,6 +34,7 @@ export class HeaderComponent implements OnInit {
     decodedToken = decodedToken[Object.keys(decodedToken)[0]];
 
     this.currentUser = decodedToken;
+    console.log(this.authService.isAdmin);
   }
 
   handleLogout(): void {

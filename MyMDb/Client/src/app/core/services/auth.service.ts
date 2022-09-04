@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CreateUserDTO } from '../models/createUserDTO';
@@ -8,6 +9,7 @@ import { LoginUserDTO } from '../models/loginUserDto';
 @Injectable()
 export class AuthService {
   isLogged: boolean = false;
+
   constructor(private httpClient: HttpClient) { }
 
   register(user: CreateUserDTO): Observable<string> {
@@ -33,5 +35,22 @@ export class AuthService {
     }
 
     return this.isLogged = true;
+  }
+
+  get isAdmin(): boolean {
+    const token = document.cookie;
+
+    if (!token) {
+      return false;
+    }
+
+    const helper = new JwtHelperService();
+    let decodedToken = helper.decodeToken(token);
+    
+    if (decodedToken[Object.keys(decodedToken)[1]] == 'Admin') {
+      return true;
+    }
+
+    return false;
   }
 }
