@@ -34,7 +34,6 @@ export class HeaderComponent implements OnInit {
     decodedToken = decodedToken[Object.keys(decodedToken)[0]];
 
     this.currentUser = decodedToken;
-    console.log(this.authService.isAdmin);
   }
 
   handleLogout(): void {

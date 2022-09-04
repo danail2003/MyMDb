@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -25,6 +25,7 @@ export class AuthService {
   logout(): void {
     this.isLogged = false;
     document.cookie = 'session=;expires=Thu, 01 Jan 1970 00:00:01 GMT';
+    window.location.reload();
   }
 
   authenticate(): boolean {
