@@ -10,8 +10,6 @@ import { HomepageComponent } from './shared/homepage/homepage.component';
 import { SharedModule } from '../app/shared/shared.module'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FeatureModule } from './feature/feature.module';
-import { RegisterComponent } from './auth/register/register.component';
-import { LoginComponent } from './auth/login/login.component';
 import { AuthModule } from './auth/auth.module';
 import { AuthService } from './core/services/auth.service';
 

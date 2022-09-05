@@ -1,9 +1,11 @@
 ﻿namespace MyMDb.Services
 {
     using Microsoft.EntityFrameworkCore;
-
+    using MyMDb.Constants;
     using MyMDb.DTO;
     using MyMDb.Models;
+    using Newtonsoft.Json;
+    using System.Net;
 
     public class MoviesService : IMoviesService
     {
@@ -49,18 +51,24 @@
             return movie;
         }
 
-        public async Task<IEnumerable<MovieDTO>> GetTopRatedMoviesAsync()
+        public async Task<List<IMDbMovieDTO>> GetTopRatedMoviesAsync()
         {
-            return await this.context.Movies.OrderByDescending(x => x.Rating).Take(250).Select(x => new MovieDTO
+            HttpWebRequest WebReq = (HttpWebRequest)WebRequest.Create(string.Format($"{Common.IMDbLink}{Secrets.IMDbAPIKey}"));
+
+            WebReq.Method = "GET";
+
+            HttpWebResponse WebResp = (HttpWebResponse)WebReq.GetResponse();
+
+            string jsonString;
+            using (Stream stream = WebResp.GetResponseStream())   //modified from your code since the using statement disposes the stream automatically when done
             {
-                Id = x.Id,
-                Name = x.Name,
-                Image = x.Image,
-                Description = x.Description,
-                Duration = x.Duration,
-                Rating = x.Rating,
-                Year = x.Year,
-            }).ToListAsync();
+                StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8);
+                jsonString = reader.ReadToEnd();
+            }
+
+            var items = JsonConvert.DeserializeObject<AllIMDbMoviesDTO>(jsonString);
+
+            return items.Items;
         }
     }
 }
