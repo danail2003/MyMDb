@@ -11,6 +11,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
 import { PostMoviePageComponent } from './movies/post-movie-page/post-movie-page.component';
 import { MoviesRoutingModule } from './movies-routing.module';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [MoviesListComponent, TopRatedMoviesComponent, PostMoviePageComponent],
@@ -24,7 +25,8 @@ import { MoviesRoutingModule } from './movies-routing.module';
     MatOptionModule,
     MatSelectModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatListModule
   ],
   exports: [MoviesListComponent]
 })

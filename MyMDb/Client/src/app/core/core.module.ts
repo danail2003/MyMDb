@@ -6,6 +6,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { AuthService } from './services/auth.service';
 import { MoviesService } from './services/movies.service';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [HeaderComponent],
@@ -13,7 +14,8 @@ import { MatMenuModule } from '@angular/material/menu';
     CommonModule,
     RouterModule,
     MatToolbarModule,
-    MatMenuModule
+    MatMenuModule,
+    MatButtonModule
   ],
   providers: [AuthService, MoviesService],
   exports: [HeaderComponent]

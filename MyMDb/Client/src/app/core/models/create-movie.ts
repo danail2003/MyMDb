@@ -1,7 +1,6 @@
-export interface Movie {
+export interface CreateMovie {
     id: string;
-    rank: number;
-    title: string;
+    name: string;
     country: string;
     description: string;
     year: number;

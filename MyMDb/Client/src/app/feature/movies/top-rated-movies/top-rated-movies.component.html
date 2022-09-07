@@ -1,1 +1,1 @@
-<img [src]="movie.image" [alt]="movie.name">
+<mat-list-item role="listitem">{{movie.rank + '&nbsp;'}}<a [routerLink]="'/movie/' + movie.id">{{movie.title}}</a></mat-list-item>

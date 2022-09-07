@@ -1,11 +1,13 @@
 ﻿namespace MyMDb.Services
 {
+    using System.Net;
+
     using Microsoft.EntityFrameworkCore;
+    using Newtonsoft.Json;
+
     using MyMDb.Constants;
     using MyMDb.DTO;
     using MyMDb.Models;
-    using Newtonsoft.Json;
-    using System.Net;
 
     public class MoviesService : IMoviesService
     {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { JwtHelperService } from '@auth0/angular-jwt';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +9,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  currentUser!: any;
+  currentUser: Observable<string> = this.authService.currentUser;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -22,18 +22,8 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const token = document.cookie;
-
-    if (!token) {
-      return;
-    }
-
-    const helper = new JwtHelperService();
-
-    let decodedToken = helper.decodeToken(token);
-    decodedToken = decodedToken[Object.keys(decodedToken)[0]];
-
-    this.currentUser = decodedToken;
+    console.log(this.currentUser);
+    
   }
 
   handleLogout(): void {

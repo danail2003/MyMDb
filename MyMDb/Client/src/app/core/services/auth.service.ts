@@ -1,15 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CreateUserDTO } from '../models/createUserDTO';
 import { LoginUserDTO } from '../models/loginUserDto';
 
 @Injectable()
 export class AuthService {
+  private _currentUser = new BehaviorSubject<string>('');
+  currentUser = this._currentUser.asObservable();
   isLogged: boolean = false;
-
+  
   constructor(private httpClient: HttpClient) { }
 
   register(user: CreateUserDTO): Observable<string> {
@@ -24,17 +26,24 @@ export class AuthService {
 
   logout(): void {
     this.isLogged = false;
+    this._currentUser.next('');
     document.cookie = 'session=;expires=Thu, 01 Jan 1970 00:00:01 GMT';
-    window.location.reload();
   }
 
   authenticate(): boolean {
     const token = document.cookie;
 
     if (!token) {
+      this._currentUser.next('');
       return this.isLogged = false;
     }
 
+    const helper = new JwtHelperService();
+
+    let decodedToken = helper.decodeToken(token);
+    decodedToken = decodedToken[Object.keys(decodedToken)[0]];
+    
+    this._currentUser.next(decodedToken);
     return this.isLogged = true;
   }
 
