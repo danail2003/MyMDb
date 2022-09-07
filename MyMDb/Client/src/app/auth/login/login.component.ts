@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(body).subscribe((token) => {
       document.cookie = `session=${token.result}`;
-
+      this.authService.authenticate();
       this.router.navigate(['/']);
     })
   }
