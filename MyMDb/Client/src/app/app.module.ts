@@ -12,6 +12,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FeatureModule } from './feature/feature.module';
 import { AuthModule } from './auth/auth.module';
 import { AuthService } from './core/services/auth.service';
+import { StoreModule } from '@ngrx/store';
+import { countReducer, IRootState } from './shared/state';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,11 @@ import { AuthService } from './core/services/auth.service';
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    StoreModule.forRoot<IRootState>({
+      counter: countReducer
+    }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [
     {
