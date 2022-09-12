@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { Movie } from 'src/app/core/models/movie';
-import { MoviesService } from 'src/app/core/services/movies.service';
+import { IMoviesState } from '../state';
+import { loadTopRatedMovies } from '../state/actions';
+import { getTopRatedMoviesSelector } from '../state/selectors';
 
 @Component({
   selector: 'app-movies-list',
@@ -8,15 +12,11 @@ import { MoviesService } from 'src/app/core/services/movies.service';
   styleUrls: ['./movies-list.component.css']
 })
 export class MoviesListComponent implements OnInit {
-  topRatedMovies!: Movie[];
+  topRatedMovies$: Observable<Movie[]> = this.store.select(getTopRatedMoviesSelector);
 
-  constructor(private moviesService: MoviesService) { }
+  constructor(private store: Store<IMoviesState>) { }
 
   ngOnInit(): void {
-    this.moviesService.loadTopRatedMovies().subscribe(movies => {
-      this.topRatedMovies = movies;
-      console.log(this.topRatedMovies);
-      
-    });
+    this.store.dispatch(loadTopRatedMovies());
   }
 }

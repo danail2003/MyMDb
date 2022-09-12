@@ -53,24 +53,20 @@
             return movie;
         }
 
-        public async Task<List<IMDbMovieDTO>> GetTopRatedMoviesAsync()
+        public async Task<List<MovieDTO>> GetTopRatedMoviesAsync()
         {
-            HttpWebRequest WebReq = (HttpWebRequest)WebRequest.Create(string.Format($"{Common.IMDbLink}{Secrets.IMDbAPIKey}"));
-
-            WebReq.Method = "GET";
-
-            HttpWebResponse WebResp = (HttpWebResponse)WebReq.GetResponse();
-
-            string jsonString;
-            using (Stream stream = WebResp.GetResponseStream())   //modified from your code since the using statement disposes the stream automatically when done
+            var result = context.Movies.Select(x => new MovieDTO
             {
-                StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8);
-                jsonString = reader.ReadToEnd();
-            }
+                Description = x.Description,
+                Id = x.Id,
+                Duration = x.Duration,
+                Image = x.Image,
+                Name = x.Name,
+                Rating = x.Rating,
+                Year = x.Year
+            }).ToList();
 
-            var items = JsonConvert.DeserializeObject<AllIMDbMoviesDTO>(jsonString);
-
-            return items.Items;
+            return result;
         }
     }
 }

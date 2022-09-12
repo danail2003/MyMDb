@@ -16,6 +16,8 @@ import { StoreModule } from '@ngrx/store';
 import { countReducer, IRootState } from './shared/state';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { MoviesEffects } from './feature/movies/state/movie.effects';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { environment } from '../environments/environment';
     StoreModule.forRoot<IRootState>({
       counter: countReducer
     }),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreModule.forRoot({}, {}),
+    EffectsModule.forRoot([MoviesEffects])
   ],
   providers: [
     {

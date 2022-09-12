@@ -12,6 +12,9 @@ import { MatButtonModule } from "@angular/material/button";
 import { PostMoviePageComponent } from './movies/post-movie-page/post-movie-page.component';
 import { MoviesRoutingModule } from './movies-routing.module';
 import { MatListModule } from '@angular/material/list';
+import { StoreModule } from '@ngrx/store';
+import { movieReducer } from './movies/state/reducers';
+import { IMoviesState } from './movies/state';
 
 @NgModule({
   declarations: [MoviesListComponent, TopRatedMoviesComponent, PostMoviePageComponent],
@@ -26,7 +29,8 @@ import { MatListModule } from '@angular/material/list';
     MatSelectModule,
     MatInputModule,
     MatButtonModule,
-    MatListModule
+    MatListModule,
+    StoreModule.forFeature<IMoviesState>('movie', movieReducer)
   ],
   exports: [MoviesListComponent]
 })
