@@ -7,6 +7,8 @@ import { AuthService } from './services/auth.service';
 import { MoviesService } from './services/movies.service';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { StoreModule } from '@ngrx/store';
+import { loadUserReducer } from './state';
 
 @NgModule({
   declarations: [HeaderComponent],
@@ -15,7 +17,8 @@ import { MatButtonModule } from '@angular/material/button';
     RouterModule,
     MatToolbarModule,
     MatMenuModule,
-    MatButtonModule
+    MatButtonModule,
+    StoreModule.forFeature('auth', loadUserReducer)
   ],
   providers: [AuthService, MoviesService],
   exports: [HeaderComponent]

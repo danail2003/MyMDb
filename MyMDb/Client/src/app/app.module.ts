@@ -18,6 +18,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { MoviesEffects } from './feature/movies/state/movie.effects';
+import { AuthEffects } from './core/state';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { MoviesEffects } from './feature/movies/state/movie.effects';
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([MoviesEffects])
+    EffectsModule.forRoot([MoviesEffects]),
+    EffectsModule.forRoot([AuthEffects])
   ],
   providers: [
     {

@@ -8,7 +8,7 @@
                 <li *ngIf="!isLogged"><a routerLink="/auth/login">Login</a></li>
                 <li *ngIf="!isLogged"><a routerLink="/auth/register">Register</a></li>
                 <ng-container *ngIf="isLogged">
-                    <button mat-button [matMenuTriggerFor]="menu">{{currentUser | async}}</button>
+                    <button mat-button [matMenuTriggerFor]="menu">{{currentUser$ | async}}</button>
                     <mat-menu #menu="matMenu">
                         <button mat-menu-item>Item 1</button>
                         <button mat-menu-item>Item 2</button>

@@ -13,7 +13,7 @@ import { PostMoviePageComponent } from './movies/post-movie-page/post-movie-page
 import { MoviesRoutingModule } from './movies-routing.module';
 import { MatListModule } from '@angular/material/list';
 import { StoreModule } from '@ngrx/store';
-import { movieReducer } from './movies/state/reducers';
+import { movieReducer } from './movies/state';
 import { IMoviesState } from './movies/state';
 
 @NgModule({

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { getUserSelector, IAuthState, loadUser } from '../state';
 
 @Component({
   selector: 'app-header',
@@ -9,9 +11,9 @@ import { Observable } from 'rxjs';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  currentUser: Observable<string> = this.authService.currentUser;
+  currentUser$: Observable<string> = this.store.select(getUserSelector);
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private store: Store<IAuthState>) { }
 
   get isLogged(): boolean {
     return this.authService.isLogged;
@@ -22,8 +24,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.currentUser);
-    
+    this.store.dispatch(loadUser());
   }
 
   handleLogout(): void {
