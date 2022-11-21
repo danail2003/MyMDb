@@ -16,11 +16,7 @@ export class MoviesService {
     return this.httpClient.get<Movie[]>(`${apiUrl}/movies/top`);
   }
 
-  createMovie(body: {
-    name: string, country: string, description: string,
-    releaseDate: string, year: number, duration: number, budget: number,
-    gross: number, rating: number, video: string, image: string
-  }): Observable<CreateMovie> {
+  createMovie(body: CreateMovie): Observable<CreateMovie> {
     return this.httpClient.post<CreateMovie>(`${apiUrl}/movies`, body);
   }
 }
