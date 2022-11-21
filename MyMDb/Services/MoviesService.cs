@@ -23,6 +23,13 @@
             var movie = new Movie
             {
                 Name = movieDTO.Name,
+                Country = movieDTO.Country,
+                ReleaseDate = movieDTO.ReleaseDate,
+                Video = movieDTO.Video,
+                Genres = movieDTO.Genres,
+                Actors = movieDTO.Actors,
+                Budget = movieDTO.Budget,
+                Gross = movieDTO.Gross,
                 Description = movieDTO.Description,
                 Duration = movieDTO.Duration,
                 Year = movieDTO.Year,
