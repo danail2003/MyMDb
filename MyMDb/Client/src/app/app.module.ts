@@ -40,8 +40,7 @@ import { AuthEffects } from './core/state';
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([MoviesEffects]),
-    EffectsModule.forRoot([AuthEffects])
+    EffectsModule.forRoot([MoviesEffects, AuthEffects]),
   ],
   providers: [
     {
