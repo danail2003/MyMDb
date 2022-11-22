@@ -119,7 +119,7 @@
                 Duration = movieItems["Duration"][numberOfMovie],
                 Image = movieItems["Image"][numberOfMovie],
                 Rating = double.Parse(movieItems["Rating"][numberOfMovie]),
-                Year = movieItems["Year"][numberOfMovie],
+                Year = int.Parse(movieItems["Year"][numberOfMovie]),
                 Genres = genres[numberOfMovie],
                 Actors = string.Join(", ", actors[numberOfMovie]),
             };

@@ -15,6 +15,7 @@ import { MatListModule } from '@angular/material/list';
 import { StoreModule } from '@ngrx/store';
 import { movieReducer } from './movies/state';
 import { IMoviesState } from './movies/state';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [MoviesListComponent, TopRatedMoviesComponent, PostMoviePageComponent],
@@ -30,6 +31,7 @@ import { IMoviesState } from './movies/state';
     MatInputModule,
     MatButtonModule,
     MatListModule,
+    AgGridModule,
     StoreModule.forFeature<IMoviesState>('movie', movieReducer)
   ],
   exports: [MoviesListComponent]

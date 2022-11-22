@@ -18,18 +18,19 @@
         [MinLength(10)]
         public string Description { get; set; }
 
-        public bool IsReleased { get; set; }
-
         public string ReleaseDate { get; set; }
 
         [Range(1888, 2023)]
-        public string Year { get; set; }
+        public int Year { get; set; }
 
+        [Required]
         public string Duration { get; set; }
 
-        public string Budget { get; set; }
+        [Required]
+        public int Budget { get; set; }
 
-        public string Gross { get; set; }
+        [Required]
+        public int Gross { get; set; }
 
         [Range(1, 10)]
         public double Rating { get; set; }
@@ -39,5 +40,11 @@
 
         [Required]
         public string Image { get; set; }
+
+        [Required, MinLength(2)]
+        public string Genres { get; set; }
+
+        [Required, MinLength(5)]
+        public string Actors { get; set; }
     }
 }
