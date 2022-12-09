@@ -1,1 +1,9 @@
-<mat-list-item role="listitem">{{movie.rating + '&nbsp;'}}<a [routerLink]="'/movie/' + movie.id">{{movie.name}}</a></mat-list-item>
+<div class="movie">
+    <mat-list-item role="listitem">{{index+1}}.&nbsp;
+        <img [src]="movie.image" [alt]="movie.name">
+        <a [routerLink]="'/movie/' + movie.id">{{movie.name}}</a>
+        <p>{{movie.rating}}</p>
+        <p>{{movie.rating}}</p>
+        <mat-checkbox class="example-margin" [(ngModel)]="checked"></mat-checkbox>
+    </mat-list-item>
+</div>

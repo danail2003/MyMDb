@@ -16,6 +16,7 @@ import { StoreModule } from '@ngrx/store';
 import { movieReducer } from './movies/state';
 import { IMoviesState } from './movies/state';
 import { AgGridModule } from 'ag-grid-angular';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [MoviesListComponent, TopRatedMoviesComponent, PostMoviePageComponent],
@@ -31,6 +32,7 @@ import { AgGridModule } from 'ag-grid-angular';
     MatInputModule,
     MatButtonModule,
     MatListModule,
+    MatCheckboxModule,
     AgGridModule,
     StoreModule.forFeature<IMoviesState>('movie', movieReducer)
   ],

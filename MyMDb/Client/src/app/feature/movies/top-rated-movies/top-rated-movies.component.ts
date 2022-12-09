@@ -8,10 +8,12 @@ import { Movie } from 'src/app/core/models/movie';
 })
 export class TopRatedMoviesComponent implements OnInit {
   @Input() movie!: Movie;
-  
+  @Input() index!: number;
+  public checked: boolean = false;
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }

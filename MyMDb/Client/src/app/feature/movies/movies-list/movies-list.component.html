@@ -1,1 +1,2 @@
-<mat-list role="list"><app-top-rated-movies *ngFor="let movie of topRatedMovies$ | async" [movie]="movie"></app-top-rated-movies></mat-list>
+<p>Title</p>
+<mat-list role="list"><app-top-rated-movies *ngFor="let movie of topRatedMovies$ | async; let index = index" [movie]="movie" [index]="index"></app-top-rated-movies></mat-list>
