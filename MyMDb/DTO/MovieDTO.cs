@@ -15,5 +15,7 @@
         public double Rating { get; set; }
 
         public string Image { get; set; }
+
+        public bool IsInWatchlist { get; set; }
     }
 }

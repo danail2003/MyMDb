@@ -17,10 +17,10 @@
             _moviesService = moviesService;
         }
 
-        [HttpGet("top")]
-        public async Task<IActionResult> GetTopRated()
+        [HttpPost("top")]
+        public async Task<IActionResult> GetTopRated(LoadMoviesDTO dto)
         {
-            var result = await _moviesService.GetTopRatedMoviesAsync();
+            var result = await _moviesService.GetTopRatedMoviesAsync(dto);
 
             return Ok(result);
         }
@@ -29,6 +29,14 @@
         public async Task<IActionResult> CreateMovie(CreateMovieDTO dto)
         {
             var result = await _moviesService.CreateMovie(dto);
+
+            return Ok(result);
+        }
+
+        [HttpPost("watchlist")]
+        public async Task<IActionResult> AddToWatchlist(AddToWatchlistDTO dto)
+        {
+            var result = await _moviesService.AddToWatchlist(dto);
 
             return Ok(result);
         }

@@ -32,7 +32,6 @@ export class AuthService {
 
   authenticate(): boolean {
     const token = document.cookie;
-
     if (!token) {
       this._currentUser.next('');
       return this.isLogged = false;
@@ -49,7 +48,6 @@ export class AuthService {
 
   get isAdmin(): boolean {
     const token = document.cookie;
-
     if (!token) {
       return false;
     }
@@ -62,5 +60,19 @@ export class AuthService {
     }
 
     return false;
+  }
+
+  get getEmail():string {
+    const token = document.cookie;
+    if (!token) {
+      return '';
+    }
+
+    const helper = new JwtHelperService();
+    let decodedToken = helper.decodeToken(token);
+
+    const email: string= decodedToken[Object.keys(decodedToken)[0]];
+    
+    return email;
   }
 }

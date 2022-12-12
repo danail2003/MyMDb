@@ -9,5 +9,5 @@ export interface Movie {
     image: string;
     genres: string[];
     actors: string[];
-    usersMovie: string[];
+    isInWatchlist: boolean;
 }

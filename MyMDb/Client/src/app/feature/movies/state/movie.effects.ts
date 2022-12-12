@@ -5,7 +5,7 @@ import { filter, mergeMap, switchMap, tap } from "rxjs";
 import { CreateMovie } from "src/app/core/models/create-movie";
 import { MoviesService } from "src/app/core/services/movies.service";
 import { IMoviesState } from ".";
-import { createMovie, loadTopRatedMovies, loadTopRatedMoviesSuccess } from "./actions";
+import { addToWatchlist, createMovie, loadTopRatedMovies, loadTopRatedMoviesSuccess } from "./actions";
 
 @Injectable()
 export class MoviesEffects {
@@ -13,24 +13,35 @@ export class MoviesEffects {
 
     onLoadingTopRatedMovies$ = createEffect(() =>
         this.actions$.pipe(ofType(loadTopRatedMovies),
-            mergeMap(() => {
-                const movies = this.moviesService.loadTopRatedMovies();
+            mergeMap((action) => {
+                const movies = this.moviesService.loadTopRatedMovies(action.email);
                 return movies;
             }),
             tap(movies => {
-                this.store.dispatch(loadTopRatedMoviesSuccess({movies: movies}));
+                this.store.dispatch(loadTopRatedMoviesSuccess({ movies: movies }));
             })),
         {
             dispatch: false
         }
     )
+
     onCreateMovies$ = createEffect(() => this.actions$.pipe(
         ofType(createMovie),
-        switchMap(movie => 
+        switchMap(movie =>
             this.moviesService.createMovie(movie.model)
         )),
         {
             dispatch: false
         }
-      ); 
+    );
+
+    onAddToWatchList$ = createEffect(() => this.actions$.pipe(
+        ofType(addToWatchlist),
+        switchMap(action =>
+            this.moviesService.addToWatchlist(action.movie)
+        )),
+        {
+            dispatch: false
+        }
+    )
 }

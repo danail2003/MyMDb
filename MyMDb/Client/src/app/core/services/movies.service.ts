@@ -4,6 +4,8 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { CreateMovie } from 'src/app/core/models/create-movie';
 import { Movie } from 'src/app/core/models/movie';
+import { AddToWatchlist } from '../models/addToWatchlistDTO';
+import { LoadMoviesDTO } from '../models/loadMoviesDTO';
 
 const apiUrl = environment.apiUrl;
 
@@ -12,11 +14,15 @@ export class MoviesService {
 
   constructor(private httpClient: HttpClient) { }
 
-  loadTopRatedMovies(): Observable<Movie[]> {
-    return this.httpClient.get<Movie[]>(`${apiUrl}/movies/top`);
+  loadTopRatedMovies(body: LoadMoviesDTO): Observable<Movie[]> {
+    return this.httpClient.post<Movie[]>(`${apiUrl}/movies/top`, body);
   }
 
   createMovie(body: CreateMovie): Observable<CreateMovie> {
     return this.httpClient.post<CreateMovie>(`${apiUrl}/movies`, body);
+  }
+
+  addToWatchlist(body: AddToWatchlist): Observable<AddToWatchlist> {
+    return this.httpClient.post<AddToWatchlist>(`${apiUrl}/movies/watchlist`, body);
   }
 }
