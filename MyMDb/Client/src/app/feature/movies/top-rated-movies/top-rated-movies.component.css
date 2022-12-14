@@ -1,8 +1,50 @@
 .movie {
     display: flex;
+    width: 500px;
+    height: 67px;
+    border: 1px solid none;
+}
+
+a {
+    text-decoration: none;
 }
 
 img {
-    width: 80px;
-    height: 50px;
+    width: 45px;
+    height: 67px;
+    margin-right: 5px;
+}
+
+.add-to-watchlist {
+    position: relative;
+}
+
+.add-to-watchlist:before {
+    content: attr(data-hover);
+    visibility: hidden;
+    opacity: 0;
+    width: 140px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px 0;
+    transition: opacity 1s ease-in-out;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 110%;
+}
+
+.add-to-watchlist:hover:before {
+    opacity: 1;
+    visibility: visible;
+}
+
+.year {
+    flex-grow: 1;
+}
+
+.average-rating {
+    margin-left: 100px;
 }

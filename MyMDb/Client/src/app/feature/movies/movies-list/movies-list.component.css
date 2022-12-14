@@ -1,0 +1,23 @@
+.wrapper {
+    padding: 0 400px;
+}
+
+.titles-wrapper {
+    background-color: aliceblue;
+    display: flex;
+    padding: 20px 0;
+    margin-bottom: 10px;
+}
+
+.title {
+    flex-grow: 1;
+    margin-left: 80px;
+}
+
+.average-rating {
+    margin-right: 30px;
+}
+
+.my-rating {
+    margin-right: 65px;
+}

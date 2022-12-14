@@ -12,9 +12,9 @@
                     <mat-menu #menu="matMenu">
                         <button mat-menu-item>Item 1</button>
                         <button mat-menu-item>Item 2</button>
+                        <button mat-menu-item *ngIf="isLogged" (click)="handleLogout()">Logout</button>
                     </mat-menu>
                 </ng-container>
-                <li *ngIf="isLogged"><a routerLink="" (click)="handleLogout()">Logout</a></li>
             </ul>
         </nav>
     </header>
