@@ -19,7 +19,7 @@ export class MoviesListComponent implements OnInit {
   constructor(private store: Store<IMoviesState>, private authService: AuthService) { }
 
   ngOnInit(): void {
-    const loadMovies: LoadMoviesDTO = {email: this.authService.getEmail};
+    const loadMovies: LoadMoviesDTO = {email: this.authService?.getEmail};
     this.store.dispatch(loadTopRatedMovies({email: loadMovies}));
   }
 }

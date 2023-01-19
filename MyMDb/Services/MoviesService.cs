@@ -115,5 +115,26 @@
 
             return dto.IsChecked;
         }
+
+        public async Task<List<MovieDTO>> GetMyWatchlist(string email)
+        {
+            var user = await context.Users.FirstOrDefaultAsync(x => x.Email == email);
+
+            if(user == null)
+            {
+                throw new InvalidOperationException("User doesn't exists");
+            }
+
+            var movies = await context.UsersMovies.Where(x => x.UserId == user.Id).Select(x => new MovieDTO
+            {
+                Name = x.Movie.Name,
+                Year = x.Movie.Year,
+                Description = x.Movie.Description,
+                Duration = x.Movie.Duration,
+                Rating = x.Movie.Rating,
+            }).ToListAsync();
+
+            return movies;
+        }
     }
 }

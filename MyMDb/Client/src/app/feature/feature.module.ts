@@ -17,9 +17,13 @@ import { movieReducer } from './movies/state';
 import { IMoviesState } from './movies/state';
 import { AgGridModule } from 'ag-grid-angular';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { NbSpinnerModule } from '@nebular/theme';
+import { NbStatusService } from '@nebular/theme';
+import { NbThemeModule } from '@nebular/theme';
+import { WatchlistComponent } from './movies/watchlist/watchlist.component';
 
 @NgModule({
-  declarations: [MoviesListComponent, TopRatedMoviesComponent, PostMoviePageComponent],
+  declarations: [MoviesListComponent, TopRatedMoviesComponent, PostMoviePageComponent, WatchlistComponent],
   imports: [
     CommonModule,
     MoviesRoutingModule,
@@ -34,8 +38,11 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatListModule,
     MatCheckboxModule,
     AgGridModule,
+    NbThemeModule,
+    NbSpinnerModule,
     StoreModule.forFeature<IMoviesState>('movie', movieReducer)
   ],
-  exports: [MoviesListComponent]
+  exports: [MoviesListComponent],
+  providers: [NbStatusService]
 })
 export class FeatureModule { }

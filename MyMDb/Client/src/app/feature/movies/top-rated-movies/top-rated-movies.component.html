@@ -1,10 +1,11 @@
 <div class="movie">
-    <mat-list-item id="wrapper" role="listitem">{{index+1}}.&nbsp;
-        <img [src]="movie.image" [alt]="movie.name">
-        <a [routerLink]="'/movie/' + movie.id">{{movie.name}}</a>
-        <span class="year">&nbsp;({{movie.year}})</span>
-        <p class="average-rating">{{movie.rating}}</p>
-        <p class="my-rating">{{movie.rating}}</p>
-        <mat-checkbox class="add-to-watchlist" data-hover="Add to watchlist" [(ngModel)]="checked" (change)="addToWatchlist($event, movie.id)"></mat-checkbox>
-    </mat-list-item>
+  <mat-list-item id="wrapper" role="listitem" [nbSpinner]="movie.isLoading" nbSpinnerStatus="primary" nbSpinnerSize="large">{{index+1}}.&nbsp;
+    <img [src]="movie.image" [alt]="movie.name">
+    <a [routerLink]="'/movie/' + movie.id">{{movie.name}}</a>
+    <span class="year">&nbsp;({{movie.year}})</span>
+    <p class="average-rating">{{movie.rating}}</p>
+    <p class="my-rating">{{movie.rating}}</p>
+    <mat-checkbox class="add-to-watchlist" data-hover="Add to watchlist" [checked]="movie.isInWatchlist"
+      (change)="addToWatchlist($event, movie.id)"></mat-checkbox>
+  </mat-list-item>
 </div>

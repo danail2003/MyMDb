@@ -12,5 +12,7 @@ namespace MyMDb.Services
         Task<Guid> CreateMovie(CreateMovieDTO movieDTO);
 
         Task<bool> AddToWatchlist(AddToWatchlistDTO dto);
+
+        Task<List<MovieDTO>> GetMyWatchlist(string email);
     }
 }

@@ -13,12 +13,11 @@ import { FeatureModule } from './feature/feature.module';
 import { AuthModule } from './auth/auth.module';
 import { AuthService } from './core/services/auth.service';
 import { StoreModule } from '@ngrx/store';
-import { countReducer, IRootState } from './shared/state';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { MoviesEffects } from './feature/movies/state/movie.effects';
 import { AuthEffects } from './core/state';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -35,12 +34,12 @@ import { AuthEffects } from './core/state';
     HttpClientModule,
     SharedModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot<IRootState>({
-      counter: countReducer
-    }),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     StoreModule.forRoot({}, {}),
     EffectsModule.forRoot([MoviesEffects, AuthEffects]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
   ],
   providers: [
     {

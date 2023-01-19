@@ -1,5 +1,6 @@
 export interface Movie {
     id: string;
+    isLoading: boolean;
     rating: number;
     name: string;
     country: string;

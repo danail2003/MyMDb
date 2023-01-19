@@ -40,5 +40,13 @@
 
             return Ok(result);
         }
+
+        [HttpPost("myWatchlist")]
+        public async Task<IActionResult> MyWatchlist(GetMyWatchlistDTO dto)
+        {
+            var result = await _moviesService.GetMyWatchlist(dto.Email);
+
+            return Ok(result);
+        }
     }
 }

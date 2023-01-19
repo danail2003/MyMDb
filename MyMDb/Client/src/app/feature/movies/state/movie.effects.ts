@@ -1,15 +1,17 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
-import { filter, mergeMap, switchMap, tap } from "rxjs";
+import { filter, map, mergeMap, Observable, switchMap, tap } from "rxjs";
 import { CreateMovie } from "src/app/core/models/create-movie";
 import { MoviesService } from "src/app/core/services/movies.service";
+import { startSpinner, stopSpinner } from "src/app/shared/state/spinner/spinner.actions";
+import { ISpinnerState } from "src/app/shared/state/spinner/spinner.reducers";
 import { IMoviesState } from ".";
 import { addToWatchlist, createMovie, loadTopRatedMovies, loadTopRatedMoviesSuccess } from "./actions";
 
 @Injectable()
 export class MoviesEffects {
-    constructor(private actions$: Actions, private moviesService: MoviesService, private store: Store<IMoviesState>) { }
+    constructor(private actions$: Actions, private moviesService: MoviesService, private store: Store<IMoviesState>, private spinnerStore: Store<ISpinnerState>) { }
 
     onLoadingTopRatedMovies$ = createEffect(() =>
         this.actions$.pipe(ofType(loadTopRatedMovies),
@@ -37,9 +39,11 @@ export class MoviesEffects {
 
     onAddToWatchList$ = createEffect(() => this.actions$.pipe(
         ofType(addToWatchlist),
-        switchMap(action =>
-            this.moviesService.addToWatchlist(action.movie)
-        )),
+        tap((action) => this.spinnerStore.dispatch(startSpinner({spinnerId: action.movie.id}))),
+        switchMap((action): Observable<any> => 
+            { return this.moviesService.addToWatchlist(action.movie).pipe(map((data) => [data, action]))}
+        ),
+        tap((data) => this.spinnerStore.dispatch(stopSpinner({spinnerId: data[1].movie.id})))),
         {
             dispatch: false
         }
