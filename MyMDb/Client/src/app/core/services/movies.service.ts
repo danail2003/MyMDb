@@ -6,6 +6,7 @@ import { CreateMovie } from 'src/app/core/models/create-movie';
 import { Movie } from 'src/app/core/models/movie';
 import { AddToWatchlist } from '../models/addToWatchlistDTO';
 import { LoadMoviesDTO } from '../models/loadMoviesDTO';
+import { GetMyWatchlistDTO } from '../models/getMyWatchlistDTO';
 
 const apiUrl = environment.apiUrl;
 
@@ -24,5 +25,9 @@ export class MoviesService {
 
   addToWatchlist(body: AddToWatchlist): Observable<AddToWatchlist> {
     return this.httpClient.post<AddToWatchlist>(`${apiUrl}/movies/watchlist`, body);
+  }
+
+  myWatchlist(body: GetMyWatchlistDTO): Observable<Movie[]> {
+    return this.httpClient.post<Movie[]>(`${apiUrl}/movies/myWatchlist`, body);
   }
 }

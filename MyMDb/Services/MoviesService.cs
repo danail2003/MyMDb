@@ -120,13 +120,15 @@
         {
             var user = await context.Users.FirstOrDefaultAsync(x => x.Email == email);
 
-            if(user == null)
+            if (user == null)
             {
                 throw new InvalidOperationException("User doesn't exists");
             }
 
             var movies = await context.UsersMovies.Where(x => x.UserId == user.Id).Select(x => new MovieDTO
             {
+                Id = x.Movie.Id,
+                Image = x.Movie.Image,
                 Name = x.Movie.Name,
                 Year = x.Movie.Year,
                 Description = x.Movie.Description,

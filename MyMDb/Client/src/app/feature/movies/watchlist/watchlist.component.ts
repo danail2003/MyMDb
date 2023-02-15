@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ColDef, GridOptions } from 'ag-grid-community';
+import { Observable } from 'rxjs';
+import { Movie } from 'src/app/core/models/movie';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { MoviesService } from 'src/app/core/services/movies.service';
+import { BtnCellRendererComponent } from './components/btn-cell-renderer/btn-cell-renderer.component';
 
 @Component({
   selector: 'app-watchlist',
@@ -8,10 +13,17 @@ import { ColDef, GridOptions } from 'ag-grid-community';
 })
 export class WatchlistComponent implements OnInit {
   public options: GridOptions
-  constructor() { }
+  public movies$: Observable<Movie[]>;
+  public movies: Movie[];
+  private email: string;
+
+  constructor(private movieService: MoviesService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.initGrid();
+    this.email = this.authService.getEmail;
+    this.movies$ = this.movieService.myWatchlist({ email: this.email })
+    this.movies$.subscribe(movies => this.movies = movies);
   }
 
   private initGrid(): void {
@@ -22,7 +34,7 @@ export class WatchlistComponent implements OnInit {
       suppressClickEdit: true,
       suppressMovableColumns: true,
       suppressMenuHide: true,
-      animateRows: false,
+      animateRows: true,
       debounceVerticalScrollbar: true,
       enableRangeSelection: true,
       immutableData: true,
@@ -34,14 +46,26 @@ export class WatchlistComponent implements OnInit {
   }
 
   columnDefs: ColDef[] = [
-    { field: 'make' },
-    { field: 'model' },
-    { field: 'price' }
-  ];
-
-  rowData = [
-    { make: 'Toyota', model: 'Celica', price: 35000 },
-    { make: 'Ford', model: 'Mondeo', price: 32000 },
-    { make: 'Porsche', model: 'Boxster', price: 72000 }
+    {
+      field: 'image',
+      headerName: '',
+      cellRenderer: (params: any) => `<img style="height: 40px; width: 40px" src=${params.data.image} />`
+    },
+    { field: 'name' },
+    { field: 'year' },
+    { field: 'description' },
+    { field: 'duration' },
+    { field: 'rating' },
+    {
+      field: 'id',
+      headerName: '',
+      width: 334,
+      cellRenderer: BtnCellRendererComponent,
+      cellRendererParams: {
+        clicked: function (field: any) {
+          console.log(field)
+        }
+      }
+    }
   ];
 }
