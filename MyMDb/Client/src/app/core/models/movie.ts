@@ -3,7 +3,6 @@ export interface Movie {
     isLoading: boolean;
     rating: number;
     name: string;
-    country: string;
     description: string;
     year: number;
     duration: number;

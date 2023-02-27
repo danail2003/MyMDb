@@ -10,11 +10,6 @@
         public string Name { get; set; }
 
         [Required]
-        [MaxLength(20)]
-        [MinLength(3)]
-        public string Country { get; set; }
-
-        [Required]
         [MinLength(10)]
         public string Description { get; set; }
 
@@ -27,16 +22,10 @@
         public string Duration { get; set; }
 
         [Required]
-        public int Budget { get; set; }
-
-        [Required]
-        public int Gross { get; set; }
+        public string Gross { get; set; }
 
         [Range(1, 10)]
         public double Rating { get; set; }
-
-        [Required]
-        public string Video { get; set; }
 
         [Required]
         public string Image { get; set; }

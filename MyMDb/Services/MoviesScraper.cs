@@ -14,7 +14,7 @@
 
         public MoviesScraper(MyMDbContext dbContext)
         {
-            _config = Configuration.Default.WithDefaultLoader();
+            _config = Configuration.Default.WithDefaultLoader(new AngleSharp.Io.LoaderOptions { IsResourceLoadingEnabled = true });
             _context = BrowsingContext.New(_config);
             _dbContext = dbContext;
         }
@@ -72,11 +72,19 @@
         private static Dictionary<string, List<string>> GetAllNeededItems(IDocument document)
         {
             var titles = document.QuerySelectorAll(".lister-item-header").Select(x => x.Children[1].TextContent).ToList();
-            var years = document.QuerySelectorAll(".lister-item-header").Select(x => x.Children[2].TextContent.Replace("(I) ", "").Replace("(II) ", "").Replace("(III) ", "")).ToList();
+            var years = document.QuerySelectorAll(".lister-item-header").Select(x => x.Children[2].TextContent
+            .Replace("(I) ", "").Replace("(II) ", "").Replace("(III) ", "").Replace("(", "").Replace(")", "")).ToList();
             var descriptions = document.QuerySelectorAll(".lister-item-content").Select(x => x.Children[3].TextContent.Trim()).ToList();
             var ratings = document.QuerySelectorAll(".ratings-imdb-rating").Select(x => x.Children[1].TextContent).ToList();
             var durations = document.QuerySelectorAll(".runtime").Select(x => x.TextContent).ToList();
-            var images = document.QuerySelectorAll("img").Select(x => x.GetAttribute("src"));
+            var imagesUrl = document.QuerySelectorAll(".lister-item-image > a > img").Select(x => x.GetAttribute("loadlate"));
+            var grosses = document.QuerySelectorAll(".sort-num_votes-visible").Select(x => x.Children[4].TextContent).ToList();
+            var images = new List<string>();
+
+            foreach (var image in imagesUrl)
+            {
+                images.Add(image);
+            }
 
             var movieItems = new Dictionary<string, List<string>>
             {
@@ -85,7 +93,8 @@
                 { "Rating", ratings },
                 { "Year", years },
                 { "Duration", durations },
-                //{ "Image", images }
+                { "Gross", grosses },
+                { "Image", images }
             };
 
             return movieItems;
@@ -120,6 +129,7 @@
                 Image = movieItems["Image"][numberOfMovie],
                 Rating = double.Parse(movieItems["Rating"][numberOfMovie]),
                 Year = int.Parse(movieItems["Year"][numberOfMovie]),
+                Gross = movieItems["Gross"][numberOfMovie],
                 Genres = genres[numberOfMovie],
                 Actors = string.Join(", ", actors[numberOfMovie]),
             };

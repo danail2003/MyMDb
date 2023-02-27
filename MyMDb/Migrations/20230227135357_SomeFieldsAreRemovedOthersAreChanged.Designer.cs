@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyMDb.Models;
 
@@ -11,9 +12,10 @@ using MyMDb.Models;
 namespace MyMDb.Migrations
 {
     [DbContext(typeof(MyMDbContext))]
-    partial class MyMDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230227135357_SomeFieldsAreRemovedOthersAreChanged")]
+    partial class SomeFieldsAreRemovedOthersAreChanged
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
