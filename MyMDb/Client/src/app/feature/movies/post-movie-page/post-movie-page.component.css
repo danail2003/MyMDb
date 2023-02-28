@@ -22,8 +22,11 @@ h1 {
 }
 
 .description-field {
-    margin-right: 10px;
-    width: 414px;
+    width: 450px;
+}
+
+.mat-form-field-wrapper ng-tns-c304-2 {
+    height: 60px;
 }
 
 .error {

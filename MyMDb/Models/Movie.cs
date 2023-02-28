@@ -12,13 +12,9 @@
         [Required]
         public string Description { get; set; } = string.Empty;
 
-        public string ReleaseDate { get; set; }
-
         public int Year { get; set; }
 
         public string? Duration { get; set; }
-
-        public string Gross { get; set; }
 
         public double Rating { get; set; }
 

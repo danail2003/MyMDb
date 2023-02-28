@@ -13,16 +13,11 @@
         [MinLength(10)]
         public string Description { get; set; }
 
-        public string ReleaseDate { get; set; }
-
         [Range(1888, 2023)]
         public int Year { get; set; }
 
         [Required]
         public string Duration { get; set; }
-
-        [Required]
-        public string Gross { get; set; }
 
         [Range(1, 10)]
         public double Rating { get; set; }

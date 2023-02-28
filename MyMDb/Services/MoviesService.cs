@@ -23,10 +23,8 @@
             var movie = new Movie
             {
                 Name = movieDTO.Name,
-                ReleaseDate = movieDTO.ReleaseDate,
                 Genres = movieDTO.Genres,
                 Actors = movieDTO.Actors,
-                Gross = movieDTO.Gross,
                 Description = movieDTO.Description,
                 Duration = movieDTO.Duration,
                 Year = movieDTO.Year,

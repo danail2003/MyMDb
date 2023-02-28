@@ -32,21 +32,9 @@
     </ng-container>
     <div>
         <mat-form-field class="field" appearance="fill">
-            <mat-label for="releaseDate">Release Date</mat-label>
-            <input matInput formControlName="releaseDate" name="releaseDate" id="releaseDate" placeholder="6/15/2022">
-        </mat-form-field>
-        <mat-form-field class="field" appearance="fill">
             <mat-label for="year">Year</mat-label>
             <input matInput formControlName="year" name="year" id="year">
         </mat-form-field>
-        <ng-container *ngIf="postFormGroup.controls['releaseDate'].touched && postFormGroup.controls['releaseDate'].invalid">
-            <p class="error" *ngIf="postFormGroup.controls['releaseDate'].errors?.['required']">
-                Release date is required!
-            </p>
-            <p class="error" *ngIf="postFormGroup.controls['releaseDate'].errors?.['pattern']">
-                Release date should be in this format MM/dd/yyyy!
-            </p>
-        </ng-container>
         <ng-container *ngIf="postFormGroup.controls['year'].touched && postFormGroup.controls['year'].invalid">
             <p class="error" *ngIf="postFormGroup.controls['year'].errors?.['required']">
                 Year is required!
@@ -58,18 +46,16 @@
                 Year shouldn't be after 2023!
             </p>
         </ng-container>
-    </div>
-    <div>
         <mat-form-field class="field" appearance="fill">
             <mat-label for="genres">Genres</mat-label>
             <input matInput formControlName="genres" name="genres" id="genres">
         </mat-form-field>
+    </div>
+    <div>
         <mat-form-field class="field" appearance="fill">
             <mat-label for="actors">Actors</mat-label>
             <input matInput formControlName="actors" name="actors" id="actors">
         </mat-form-field>
-    </div>
-    <div>
         <mat-form-field class="field" appearance="fill">
             <mat-label for="duration">Duration</mat-label>
             <input matInput formControlName="duration" name="duration" id="duration">
@@ -85,18 +71,9 @@
     </div>
     <div>
         <mat-form-field class="field" appearance="fill">
-            <mat-label for="gross">Gross</mat-label>
-            <input matInput formControlName="gross" name="gross" id="gross">
-        </mat-form-field>
-        <mat-form-field class="field" appearance="fill">
             <mat-label for="rating">Rating</mat-label>
             <input matInput formControlName="rating" name="rating" id="rating">
         </mat-form-field>
-        <ng-container *ngIf="postFormGroup.controls['gross'].touched && postFormGroup.controls['gross'].invalid">
-            <p class="error" *ngIf="postFormGroup.controls['gross'].errors?.['required']">
-                Gross is required!
-            </p>
-        </ng-container>
         <ng-container *ngIf="postFormGroup.controls['rating'].touched && postFormGroup.controls['rating'].invalid">
             <p class="error" *ngIf="postFormGroup.controls['rating'].errors?.['required']">
                 Rating is required!
@@ -111,8 +88,6 @@
                 Rating shouldn't be above 10!
             </p>
         </ng-container>
-    </div>
-    <div>
         <mat-form-field class="field" appearance="fill">
             <mat-label for="image">Image URL</mat-label>
             <input matInput formControlName="image" name="image" id="image">

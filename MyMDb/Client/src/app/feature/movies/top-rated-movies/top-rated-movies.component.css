@@ -2,11 +2,15 @@
     display: flex;
     width: 500px;
     height: 67px;
-    border: 1px solid none;
+    margin-bottom: 10px;
 }
 
 a {
     text-decoration: none;
+}
+
+:host ::ng-deep .mat-list-item-content {
+    width: 43vw;
 }
 
 img {
@@ -41,10 +45,18 @@ img {
     visibility: visible;
 }
 
-.year {
-    flex-grow: 1;
+.add-to-watchlist {
+    position: absolute;
+    top: 7px;
+    right: -26px;
 }
 
 .average-rating {
-    margin-left: 100px;
+    position: absolute;
+    top: 8px;
+    right: 120px;
+}
+
+.year {
+    flex-grow: 1;
 }

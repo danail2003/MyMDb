@@ -63,6 +63,7 @@
 
         private IDocument GetMovies(int number)
         {
+            Task.Delay(3000);
             var document = _context
                 .OpenAsync($"https://www.imdb.com/search/title/?groups=top_1000&sort=user_rating,desc&count={number}&start=201&ref_=adv_nxt").GetAwaiter().GetResult();
 
@@ -78,7 +79,6 @@
             var ratings = document.QuerySelectorAll(".ratings-imdb-rating").Select(x => x.Children[1].TextContent).ToList();
             var durations = document.QuerySelectorAll(".runtime").Select(x => x.TextContent).ToList();
             var imagesUrl = document.QuerySelectorAll(".lister-item-image > a > img").Select(x => x.GetAttribute("loadlate"));
-            var grosses = document.QuerySelectorAll(".sort-num_votes-visible").Select(x => x.Children[4].TextContent).ToList();
             var images = new List<string>();
 
             foreach (var image in imagesUrl)
@@ -93,7 +93,6 @@
                 { "Rating", ratings },
                 { "Year", years },
                 { "Duration", durations },
-                { "Gross", grosses },
                 { "Image", images }
             };
 
@@ -129,7 +128,6 @@
                 Image = movieItems["Image"][numberOfMovie],
                 Rating = double.Parse(movieItems["Rating"][numberOfMovie]),
                 Year = int.Parse(movieItems["Year"][numberOfMovie]),
-                Gross = movieItems["Gross"][numberOfMovie],
                 Genres = genres[numberOfMovie],
                 Actors = string.Join(", ", actors[numberOfMovie]),
             };

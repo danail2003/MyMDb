@@ -16,10 +16,8 @@ export class PostMoviePageComponent implements OnInit {
   postFormGroup: FormGroup = this.formBuilder.group({
     'name': new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]),
     'description': new FormControl('', [Validators.required, Validators.minLength(10)]),
-    'releaseDate': new FormControl('', [Validators.pattern(/^(1[012]|0[1-9])([\/\-])(0[1-9]|[12]\d|3[01])\2((?:19|20)?\d{2})$/g)]),
     'year': new FormControl('', [Validators.required, Validators.min(1888), Validators.max(2023)]),
     'duration': new FormControl('', [Validators.required, Validators.pattern("^[0-9]+$")]),
-    'gross': new FormControl('', [Validators.required]),
     'rating': new FormControl('', [Validators.required, Validators.pattern("^[0-9]+$"), Validators.min(1), Validators.max(10)]),
     'image': new FormControl('', [Validators.required, Validators.pattern("^https?:\/\/(.*)")]),
     'genres': new FormControl('', [Validators.required, Validators.minLength(2)]),
