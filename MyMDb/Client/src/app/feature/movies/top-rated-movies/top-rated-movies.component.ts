@@ -21,11 +21,13 @@ export class TopRatedMoviesComponent implements OnInit {
   public checked!: boolean;
   public isLoading$: Observable<boolean>;
   public isLoading: boolean = false;
+  public isLogged: boolean = false;
   constructor(private authService: AuthService, private store: Store<IMoviesState>, private spinnerStore: Store<ISpinnerState>) { }
 
   ngOnInit(): void {
     this.isLoading$ = this.spinnerStore.pipe(select(getIsSpinnerLoading));
     this.isLoading$.subscribe(value => this.isLoading = value);
+    this.isLogged = this.authService.isLogged;
   }
   
   addToWatchlist(event: MatCheckboxChange, id: string): void {

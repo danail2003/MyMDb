@@ -9,6 +9,8 @@ namespace MyMDb.Services
 
         Task<List<MovieDTO>> GetTopRatedMoviesAsync(LoadMoviesDTO dto);
 
+        Task<List<MovieDTO>> GetMoviesList();
+
         Task<Guid> CreateMovie(CreateMovieDTO movieDTO);
 
         Task<bool> AddToWatchlist(AddToWatchlistDTO dto);

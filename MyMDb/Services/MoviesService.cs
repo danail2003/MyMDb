@@ -133,5 +133,21 @@
 
             return movies;
         }
+
+        public async Task<List<MovieDTO>> GetMoviesList()
+        {
+            var result = await context.Movies.Select(x => new MovieDTO
+            {
+                Description = x.Description,
+                Id = x.Id,
+                Duration = x.Duration,
+                Image = x.Image,
+                Name = x.Name,
+                Rating = x.Rating,
+                Year = x.Year,
+            }).ToListAsync();
+
+            return result;
+        }
     }
 }

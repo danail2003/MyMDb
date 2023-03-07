@@ -17,6 +17,14 @@
             _moviesService = moviesService;
         }
 
+        [HttpGet("moviesList")]
+        public async Task<IActionResult> MoviesList()
+        {
+            var result = await _moviesService.GetMoviesList();
+
+            return Ok(result);
+        }
+
         [HttpPost("top")]
         public async Task<IActionResult> GetTopRated(LoadMoviesDTO dto)
         {

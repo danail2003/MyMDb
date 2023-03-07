@@ -65,7 +65,7 @@
         {
             Task.Delay(3000);
             var document = _context
-                .OpenAsync($"https://www.imdb.com/search/title/?groups=top_1000&sort=user_rating,desc&count={number}&start=201&ref_=adv_nxt").GetAwaiter().GetResult();
+                .OpenAsync($"https://www.imdb.com/search/title/?groups=top_1000&sort=user_rating,desc&count=100&start={number}01&ref_=adv_nxt").GetAwaiter().GetResult();
 
             return document;
         }

@@ -5,7 +5,7 @@
     <span class="year">&nbsp;({{movie.year}})</span>
     <p class="average-rating">{{movie.rating}}</p>
     <p class="my-rating">{{movie.rating}}</p>
-    <mat-checkbox class="add-to-watchlist" data-hover="Add to watchlist" [checked]="movie.isInWatchlist"
+    <mat-checkbox *ngIf="isLogged" class="add-to-watchlist" data-hover="Add to watchlist" [checked]="movie.isInWatchlist"
       (change)="addToWatchlist($event, movie.id)"></mat-checkbox>
   </mat-list-item>
 </div>

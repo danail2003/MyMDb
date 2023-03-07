@@ -9,3 +9,4 @@ export const loadTopRatedMovies = createAction(`${moviesDomain} Top Rated`, prop
 export const loadTopRatedMoviesSuccess = createAction(`${moviesDomain} Successfully loaded movies`, props<ITopRatedMovieState>());
 export const createMovie = createAction(`${moviesDomain} Create Movie`, props<{model: CreateMovie}>());
 export const addToWatchlist = createAction(`${moviesDomain} Add to watchlist`, props<{movie: AddToWatchlist}>());
+export const loadMoviesList = createAction(`${moviesDomain} Load MoviesList`);

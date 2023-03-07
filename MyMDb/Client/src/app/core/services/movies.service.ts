@@ -30,4 +30,8 @@ export class MoviesService {
   myWatchlist(body: GetMyWatchlistDTO): Observable<Movie[]> {
     return this.httpClient.post<Movie[]>(`${apiUrl}/movies/myWatchlist`, body);
   }
+
+  moviesList(): Observable<Movie[]> {
+    return this.httpClient.get<Movie[]>(`${apiUrl}/movies/moviesList`);
+  }
 }
