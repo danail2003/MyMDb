@@ -7,7 +7,7 @@ import { MoviesService } from "src/app/core/services/movies.service";
 import { startSpinner, stopSpinner } from "src/app/shared/state/spinner/spinner.actions";
 import { ISpinnerState } from "src/app/shared/state/spinner/spinner.reducers";
 import { IMoviesState } from ".";
-import { addToWatchlist, createMovie, loadMoviesList, loadTopRatedMovies, loadTopRatedMoviesSuccess } from "./actions";
+import { addToWatchlist, createMovie, loadMoviesList, loadTopRatedMovies, loadTopRatedMoviesSuccess, loadWatchlistSuccess, removeFromWatchlist } from "./actions";
 
 @Injectable()
 export class MoviesEffects {
@@ -39,27 +39,41 @@ export class MoviesEffects {
 
     onAddToWatchList$ = createEffect(() => this.actions$.pipe(
         ofType(addToWatchlist),
-        tap((action) => this.spinnerStore.dispatch(startSpinner({spinnerId: action.movie.id}))),
-        switchMap((action): Observable<any> => 
-            { return this.moviesService.addToWatchlist(action.movie).pipe(map((data) => [data, action]))}
+        tap((action) => this.spinnerStore.dispatch(startSpinner({ spinnerId: action.movie.id }))),
+        switchMap((action): Observable<any> => { return this.moviesService.addToWatchlist(action.movie).pipe(map((data) => [data, action])) }
         ),
-        tap((data) => this.spinnerStore.dispatch(stopSpinner({spinnerId: data[1].movie.id})))),
+        tap((data) => this.spinnerStore.dispatch(stopSpinner({ spinnerId: data[1].movie.id })))),
         {
             dispatch: false
         }
     )
 
-    onLoadMoviesList$ = createEffect(()=> this.actions$.pipe(
+    onLoadMoviesList$ = createEffect(() => this.actions$.pipe(
         ofType(loadMoviesList),
         switchMap((action): Observable<any> => {
             const movies = this.moviesService.moviesList();
             return movies;
         }),
         tap(movies => {
-            this.store.dispatch(loadTopRatedMoviesSuccess({movies: movies}));
+            this.store.dispatch(loadTopRatedMoviesSuccess({ movies: movies }));
         })
     ),
-    {
-        dispatch: false
-    })
+        {
+            dispatch: false
+        })
+
+    onRemoveFromWatchlist = createEffect(() => this.actions$.pipe(
+        ofType(removeFromWatchlist),
+        switchMap((action): Observable<any> => {
+            const movies = this.moviesService.removeFromWatchlist(action.userMovie);
+
+            return movies;
+        }),
+        tap(movies => {
+            this.store.dispatch(loadWatchlistSuccess({ movies: movies }))
+        })
+    ),
+        {
+            dispatch: false
+        })
 }

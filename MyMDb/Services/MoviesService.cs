@@ -149,5 +149,27 @@
 
             return result;
         }
+
+        public async Task<List<MovieDTO>> RemoveFromWatchlist(RemoveFromWatchlistDTO dto)
+        {
+            var userMovies = await context.UsersMovies.FirstOrDefaultAsync(um => um.User.Email == dto.Email && um.MovieId == dto.MovieId) ?? throw new InvalidOperationException("User or movie does not exists!");
+
+            context.UsersMovies.Remove(userMovies);
+            await context.SaveChangesAsync();
+
+            var movies = await context.UsersMovies.Where(um => um.User.Email == dto.Email)
+                .Select(um => new MovieDTO
+                {
+                    Description = um.Movie.Description,
+                    Id = um.Movie.Id,
+                    Duration = um.Movie.Duration,
+                    Image = um.Movie.Image,
+                    Name = um.Movie.Name,
+                    Rating = um.Movie.Rating,
+                    Year = um.Movie.Year,
+                }).ToListAsync();
+
+            return movies;
+        }
     }
 }

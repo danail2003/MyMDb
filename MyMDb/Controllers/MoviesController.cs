@@ -56,5 +56,13 @@
 
             return Ok(result);
         }
+
+        [HttpPost("removeFromWatchlist")]
+        public async Task<IActionResult> RemoveFromWatchlist(RemoveFromWatchlistDTO dto)
+        {
+            var result = await _moviesService.RemoveFromWatchlist(dto);
+
+            return Ok(result);
+        }
     }
 }

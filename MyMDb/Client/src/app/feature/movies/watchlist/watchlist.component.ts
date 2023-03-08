@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ColDef, GridOptions } from 'ag-grid-community';
 import { Observable } from 'rxjs';
 import { Movie } from 'src/app/core/models/movie';
+import { RemoveFromWatchlistDTO } from 'src/app/core/models/removeFromWatchlistDTO';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { MoviesService } from 'src/app/core/services/movies.service';
 import { BtnCellRendererComponent } from './components/btn-cell-renderer/btn-cell-renderer.component';
@@ -17,7 +18,7 @@ export class WatchlistComponent implements OnInit {
   public movies: Movie[];
   private email: string;
 
-  constructor(private movieService: MoviesService, private authService: AuthService) { }
+  constructor(public movieService: MoviesService, public authService: AuthService) { }
 
   ngOnInit(): void {
     this.initGrid();
@@ -63,7 +64,8 @@ export class WatchlistComponent implements OnInit {
       cellRenderer: BtnCellRendererComponent,
       cellRendererParams: {
         clicked: function (field: any) {
-          console.log(field)
+          
+          
         }
       }
     }

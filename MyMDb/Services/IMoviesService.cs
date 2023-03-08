@@ -15,6 +15,8 @@ namespace MyMDb.Services
 
         Task<bool> AddToWatchlist(AddToWatchlistDTO dto);
 
+        Task<List<MovieDTO>> RemoveFromWatchlist(RemoveFromWatchlistDTO dto);
+
         Task<List<MovieDTO>> GetMyWatchlist(string email);
     }
 }

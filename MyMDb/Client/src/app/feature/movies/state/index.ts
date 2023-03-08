@@ -9,6 +9,11 @@ export interface ITopRatedMovieState {
     movies: Movie[];
 }
 
+export interface MyWatchList {
+    movies: Movie[];
+}
+
 export interface IMoviesState {
-    topRatedMovies: ITopRatedMovieState
+    topRatedMovies: ITopRatedMovieState;
+    watchlist: MyWatchList;
 }
