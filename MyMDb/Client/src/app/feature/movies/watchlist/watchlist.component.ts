@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { ColDef, GridOptions } from 'ag-grid-community';
 import { Observable } from 'rxjs';
 import { Movie } from 'src/app/core/models/movie';
 import { RemoveFromWatchlistDTO } from 'src/app/core/models/removeFromWatchlistDTO';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { MoviesService } from 'src/app/core/services/movies.service';
+import { getMyWatchlist, IMoviesState, loadWatchlist } from '../state';
 import { BtnCellRendererComponent } from './components/btn-cell-renderer/btn-cell-renderer.component';
 
 @Component({
@@ -18,12 +20,14 @@ export class WatchlistComponent implements OnInit {
   public movies: Movie[];
   private email: string;
 
-  constructor(public movieService: MoviesService, public authService: AuthService) { }
+  constructor(public movieService: MoviesService, public authService: AuthService, private store: Store<IMoviesState>) { }
 
   ngOnInit(): void {
     this.initGrid();
     this.email = this.authService.getEmail;
-    this.movies$ = this.movieService.myWatchlist({ email: this.email })
+    this.store.dispatch(loadWatchlist({email: this.email}));
+    this.movies$ = this.store.select(getMyWatchlist);
+    // this.movies$ = this.movieService.myWatchlist({ email: this.email })
     this.movies$.subscribe(movies => this.movies = movies);
   }
 

@@ -12,4 +12,5 @@ export const createMovie = createAction(`${moviesDomain} Create Movie`, props<{m
 export const addToWatchlist = createAction(`${moviesDomain} Add to watchlist`, props<{movie: AddToWatchlist}>());
 export const loadMoviesList = createAction(`${moviesDomain} Load MoviesList`);
 export const removeFromWatchlist = createAction(`${moviesDomain} Remove from watchlist`, props<{userMovie: RemoveFromWatchlistDTO}>());
+export const loadWatchlist = createAction(`${moviesDomain} Load watchlist`, props<{email: string}>())
 export const loadWatchlistSuccess = createAction(`${moviesDomain} Successfully loaded watchlist`, props<MyWatchList>());

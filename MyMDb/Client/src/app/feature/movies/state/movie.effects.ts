@@ -7,7 +7,7 @@ import { MoviesService } from "src/app/core/services/movies.service";
 import { startSpinner, stopSpinner } from "src/app/shared/state/spinner/spinner.actions";
 import { ISpinnerState } from "src/app/shared/state/spinner/spinner.reducers";
 import { IMoviesState } from ".";
-import { addToWatchlist, createMovie, loadMoviesList, loadTopRatedMovies, loadTopRatedMoviesSuccess, loadWatchlistSuccess, removeFromWatchlist } from "./actions";
+import { addToWatchlist, createMovie, loadMoviesList, loadTopRatedMovies, loadTopRatedMoviesSuccess, loadWatchlist, loadWatchlistSuccess, removeFromWatchlist } from "./actions";
 
 @Injectable()
 export class MoviesEffects {
@@ -62,15 +62,27 @@ export class MoviesEffects {
             dispatch: false
         })
 
-    onRemoveFromWatchlist = createEffect(() => this.actions$.pipe(
+    onRemoveFromWatchlist$ = createEffect(() => this.actions$.pipe(
         ofType(removeFromWatchlist),
         switchMap((action): Observable<any> => {
             const movies = this.moviesService.removeFromWatchlist(action.userMovie);
 
             return movies;
+        })
+    ),
+        {
+            dispatch: false
+        })
+
+    onLoadWatchlist$ = createEffect(() => this.actions$.pipe(
+        ofType(loadWatchlist),
+        switchMap((action): Observable<any> => {
+            const watchlist = this.moviesService.myWatchlist({ email: action.email });
+
+            return watchlist;
         }),
-        tap(movies => {
-            this.store.dispatch(loadWatchlistSuccess({ movies: movies }))
+        tap(watchlist => {
+            this.store.dispatch(loadWatchlistSuccess({ movies: watchlist }))
         })
     ),
         {
