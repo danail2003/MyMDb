@@ -21,3 +21,8 @@
 .my-rating {
     margin-right: 65px;
 }
+
+.mat-paginator {
+    display: flex;
+    justify-content: center;
+}

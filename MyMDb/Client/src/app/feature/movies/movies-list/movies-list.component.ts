@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { LoadMoviesDTO } from 'src/app/core/models/loadMoviesDTO';
@@ -26,5 +27,10 @@ export class MoviesListComponent implements OnInit {
     else {
       this.store.dispatch(loadMoviesList());
     }
+  }
+
+  handlePage(event: PageEvent) {
+    console.log(event);
+    
   }
 }

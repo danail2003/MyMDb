@@ -16,10 +16,11 @@ import { StoreModule } from '@ngrx/store';
 import { movieReducer } from './movies/state';
 import { IMoviesState } from './movies/state';
 import { AgGridModule } from 'ag-grid-angular';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NbSpinnerModule } from '@nebular/theme';
 import { NbStatusService } from '@nebular/theme';
 import { NbThemeModule } from '@nebular/theme';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { WatchlistComponent } from './movies/watchlist/watchlist.component';
 
 @NgModule({
@@ -40,6 +41,7 @@ import { WatchlistComponent } from './movies/watchlist/watchlist.component';
     AgGridModule,
     NbThemeModule,
     NbSpinnerModule,
+    MatPaginatorModule,
     StoreModule.forFeature<IMoviesState>('movie', movieReducer)
   ],
   exports: [MoviesListComponent],

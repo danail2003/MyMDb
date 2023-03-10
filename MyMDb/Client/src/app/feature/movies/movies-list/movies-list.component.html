@@ -4,5 +4,8 @@
         <span class="average-rating">Average rating</span>
         <span class="my-rating">My rating</span>
     </div>
-    <mat-list role="list"><app-top-rated-movies *ngFor="let movie of topRatedMovies$ | async; let index = index" [movie]="movie" [index]="index"></app-top-rated-movies></mat-list>
+    <mat-list role="list"><app-top-rated-movies *ngFor="let movie of topRatedMovies$ | async; let index = index"
+            [movie]="movie" [index]="index"></app-top-rated-movies></mat-list>
+    <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page"
+        (page)="handlePage($event)" showFirstLastButtons="true"></mat-paginator>
 </div>
