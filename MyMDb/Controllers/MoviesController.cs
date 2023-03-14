@@ -26,7 +26,7 @@
         }
 
         [HttpPost("top")]
-        public async Task<IActionResult> GetTopRated(Params dto)
+        public async Task<IActionResult> GetTopRated(MoviesParams dto)
         {
             var result = await _moviesService.GetTopRatedMoviesAsync(dto);
 

@@ -7,9 +7,9 @@ namespace MyMDb.Services
     {
         Task<Movie> GetMovieAsync(Guid id);
 
-        Task<List<MovieDTO>> GetTopRatedMoviesAsync(Params dto);
+        Task<PagedResult> GetTopRatedMoviesAsync(MoviesParams dto);
 
-        Task<List<MovieDTO>> GetMoviesList(Paging paging);
+        Task<PagedResult> GetMoviesList(Paging paging);
 
         Task<Guid> CreateMovie(CreateMovieDTO movieDTO);
 

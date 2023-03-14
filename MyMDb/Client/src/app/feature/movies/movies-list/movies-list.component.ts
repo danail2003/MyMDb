@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { LoadMoviesDTO } from 'src/app/core/models/loadMoviesDTO';
 import { Movie } from 'src/app/core/models/movie';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -16,6 +16,9 @@ import { getTopRatedMoviesSelector } from '../state/selectors';
 })
 export class MoviesListComponent implements OnInit {
   topRatedMovies$: Observable<Movie[]> = this.store.select(getTopRatedMoviesSelector);
+  page: number = 1;
+  pageSize: number = 10;
+  paging: Subject<{page: number, pageSize: number}> = new Subject();
 
   constructor(private store: Store<IMoviesState>, private authService: AuthService) { }
 

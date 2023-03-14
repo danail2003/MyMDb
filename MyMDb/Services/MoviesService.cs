@@ -55,7 +55,7 @@
             return movie;
         }
 
-        public async Task<List<MovieDTO>> GetTopRatedMoviesAsync(Params dto)
+        public async Task<PagedResult> GetTopRatedMoviesAsync(MoviesParams dto)
         {
             var user = context.Users.FirstOrDefault(x => x.Email == dto.Movies.Email);
 
@@ -76,7 +76,13 @@
                 IsInWatchlist = context.UsersMovies.FirstOrDefault(m => m.MovieId == x.Id && m.UserId == user.Id) != null
             }).ToList();
 
-            return result;
+            var count = await this.context.Movies.CountAsync();
+
+            return new PagedResult
+            {
+                Movies = result,
+                Total = count,
+            };
         }
 
         public async Task<bool> AddToWatchlist(AddToWatchlistDTO dto)
@@ -134,7 +140,7 @@
             return movies;
         }
 
-        public async Task<List<MovieDTO>> GetMoviesList(Paging paging)
+        public async Task<PagedResult> GetMoviesList(Paging paging)
         {
             var result = await context.Movies.Skip(paging.Skip).Take(paging.Take).Select(x => new MovieDTO
             {
@@ -147,7 +153,13 @@
                 Year = x.Year,
             }).ToListAsync();
 
-            return result;
+            var count = await context.Movies.CountAsync();
+
+            return new PagedResult
+            {
+                Movies = result,
+                Total = count
+            };
         }
 
         public async Task<List<MovieDTO>> RemoveFromWatchlist(RemoveFromWatchlistDTO dto)

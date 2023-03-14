@@ -1,6 +1,6 @@
 ﻿namespace MyMDb.DTO
 {
-    public class Params
+    public class MoviesParams
     {
         public Paging Paging { get; set; }
 
