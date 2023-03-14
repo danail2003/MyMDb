@@ -18,15 +18,15 @@
         }
 
         [HttpGet("moviesList")]
-        public async Task<IActionResult> MoviesList()
+        public async Task<IActionResult> MoviesList(Paging paging)
         {
-            var result = await _moviesService.GetMoviesList();
+            var result = await _moviesService.GetMoviesList(paging);
 
             return Ok(result);
         }
 
         [HttpPost("top")]
-        public async Task<IActionResult> GetTopRated(LoadMoviesDTO dto)
+        public async Task<IActionResult> GetTopRated(Params dto)
         {
             var result = await _moviesService.GetTopRatedMoviesAsync(dto);
 

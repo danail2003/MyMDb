@@ -55,16 +55,16 @@
             return movie;
         }
 
-        public async Task<List<MovieDTO>> GetTopRatedMoviesAsync(LoadMoviesDTO dto)
+        public async Task<List<MovieDTO>> GetTopRatedMoviesAsync(Params dto)
         {
-            var user = context.Users.FirstOrDefault(x => x.Email == dto.Email);
+            var user = context.Users.FirstOrDefault(x => x.Email == dto.Movies.Email);
 
             if (user == null)
             {
                 throw new InvalidOperationException("User does not exists!");
             }
 
-            var result = context.Movies.Select(x => new MovieDTO
+            var result = context.Movies.Skip(dto.Paging.Skip).Take(dto.Paging.Take).Select(x => new MovieDTO
             {
                 Description = x.Description,
                 Id = x.Id,
@@ -134,9 +134,9 @@
             return movies;
         }
 
-        public async Task<List<MovieDTO>> GetMoviesList()
+        public async Task<List<MovieDTO>> GetMoviesList(Paging paging)
         {
-            var result = await context.Movies.Select(x => new MovieDTO
+            var result = await context.Movies.Skip(paging.Skip).Take(paging.Take).Select(x => new MovieDTO
             {
                 Description = x.Description,
                 Id = x.Id,
