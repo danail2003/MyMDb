@@ -7,6 +7,7 @@ import { Movie } from "src/app/core/models/movie";
 
 export interface ITopRatedMovieState {
     movies: Movie[];
+    total: number;
 }
 
 export interface MyWatchList {

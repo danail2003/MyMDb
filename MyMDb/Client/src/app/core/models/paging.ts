@@ -1,5 +1,4 @@
 export interface Paging {
-    page: number;
-    pageSize: number;
-    previousPage: number;
+    skip: number;
+    take: number;
 }

@@ -17,7 +17,7 @@
             _moviesService = moviesService;
         }
 
-        [HttpGet("moviesList")]
+        [HttpPost("moviesList")]
         public async Task<IActionResult> MoviesList(Paging paging)
         {
             var result = await _moviesService.GetMoviesList(paging);

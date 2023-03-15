@@ -60,3 +60,7 @@ img {
 .year {
     flex-grow: 1;
 }
+
+.sequence {
+    width: 40px;
+}

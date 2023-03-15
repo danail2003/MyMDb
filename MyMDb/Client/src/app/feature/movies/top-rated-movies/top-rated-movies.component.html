@@ -1,5 +1,6 @@
 <div class="movie">
-  <mat-list-item id="wrapper" role="listitem" [nbSpinner]="movie.isLoading" nbSpinnerStatus="primary" nbSpinnerSize="large">{{index+1}}.&nbsp;
+  <mat-list-item id="wrapper" role="listitem" [nbSpinner]="movie.isLoading" nbSpinnerStatus="primary" nbSpinnerSize="large">
+    <span class="sequence">{{index + 1}}.&nbsp;</span>
     <img [src]="movie.image" [alt]="movie.name">
     <a [routerLink]="'/movie/' + movie.id">{{movie.name}}</a>
     <span class="year">&nbsp;({{movie.year}})</span>

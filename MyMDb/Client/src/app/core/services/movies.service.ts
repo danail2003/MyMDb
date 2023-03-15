@@ -8,6 +8,9 @@ import { AddToWatchlist } from '../models/addToWatchlistDTO';
 import { LoadMoviesDTO } from '../models/loadMoviesDTO';
 import { GetMyWatchlistDTO } from '../models/getMyWatchlistDTO';
 import { RemoveFromWatchlistDTO } from '../models/removeFromWatchlistDTO';
+import { PagedResult } from '../models/pagedResult';
+import { MoviesParams } from '../models/moviesParamas';
+import { Paging } from '../models/paging';
 
 const apiUrl = environment.apiUrl;
 
@@ -16,8 +19,8 @@ export class MoviesService {
 
   constructor(private httpClient: HttpClient) { }
 
-  loadTopRatedMovies(body: LoadMoviesDTO): Observable<Movie[]> {
-    return this.httpClient.post<Movie[]>(`${apiUrl}/movies/top`, body);
+  loadTopRatedMovies(params: MoviesParams): Observable<PagedResult> {
+    return this.httpClient.post<PagedResult>(`${apiUrl}/movies/top`, params);
   }
 
   createMovie(body: CreateMovie): Observable<CreateMovie> {
@@ -32,8 +35,8 @@ export class MoviesService {
     return this.httpClient.post<Movie[]>(`${apiUrl}/movies/myWatchlist`, body);
   }
 
-  moviesList(): Observable<Movie[]> {
-    return this.httpClient.get<Movie[]>(`${apiUrl}/movies/moviesList`);
+  moviesList(paging: Paging): Observable<PagedResult> {
+    return this.httpClient.post<PagedResult>(`${apiUrl}/movies/moviesList`, paging);
   }
 
   removeFromWatchlist(body: RemoveFromWatchlistDTO): Observable<Movie[]> {

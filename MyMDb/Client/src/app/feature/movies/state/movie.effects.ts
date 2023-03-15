@@ -7,7 +7,7 @@ import { MoviesService } from "src/app/core/services/movies.service";
 import { startSpinner, stopSpinner } from "src/app/shared/state/spinner/spinner.actions";
 import { ISpinnerState } from "src/app/shared/state/spinner/spinner.reducers";
 import { IMoviesState } from ".";
-import { addToWatchlist, createMovie, loadMoviesList, loadTopRatedMovies, loadTopRatedMoviesSuccess, loadWatchlist, loadWatchlistSuccess, removeFromWatchlist } from "./actions";
+import { addToWatchlist, createMovie, loadMoviesList, loadTopRatedMovies, loadTopRatedMoviesSuccess, loadWatchlist, loadWatchlistSuccess, removeFromWatchlist, totalMoviesCount } from "./actions";
 
 @Injectable()
 export class MoviesEffects {
@@ -16,11 +16,12 @@ export class MoviesEffects {
     onLoadingTopRatedMovies$ = createEffect(() =>
         this.actions$.pipe(ofType(loadTopRatedMovies),
             mergeMap((action) => {
-                const movies = this.moviesService.loadTopRatedMovies(action.email);
+                const movies = this.moviesService.loadTopRatedMovies(action.params);
+                
                 return movies;
             }),
             tap(movies => {
-                this.store.dispatch(loadTopRatedMoviesSuccess({ movies: movies }));
+                this.store.dispatch(loadTopRatedMoviesSuccess({ movies: movies.data, total: movies.total }));
             })),
         {
             dispatch: false
@@ -51,11 +52,11 @@ export class MoviesEffects {
     onLoadMoviesList$ = createEffect(() => this.actions$.pipe(
         ofType(loadMoviesList),
         switchMap((action): Observable<any> => {
-            const movies = this.moviesService.moviesList();
+            const movies = this.moviesService.moviesList(action.paging);
             return movies;
         }),
         tap(movies => {
-            this.store.dispatch(loadTopRatedMoviesSuccess({ movies: movies }));
+            this.store.dispatch(loadTopRatedMoviesSuccess({ movies: movies.movies, total: movies.total }));
         })
     ),
         {
