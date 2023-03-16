@@ -38,14 +38,22 @@ export class MoviesListComponent implements OnInit {
     }
 
     this.totalMoviesCount$.subscribe(count => this.moviesCount = count);
-    this.paging.subscribe(paging => {
-      console.log(paging);
-
+    this.paging.subscribe(pageData => {
+      const paging: Paging = { skip: pageData.page * pageData.pageSize, take: pageData.pageSize };
+    if (this.authService.isLogged) {
+      const loadMovies: LoadMoviesDTO = { email: this.authService?.getEmail };
+      const params: MoviesParams = { movies: loadMovies, paging: paging };
+      this.store.dispatch(loadTopRatedMovies({ params: params }));
+    }
+    else {
+      this.store.dispatch(loadMoviesList({ paging: paging }));
+    }
     })
   }
 
   handlePage(event: PageEvent) {
-    console.log(event);
-
+    this.page = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.paging.next({page: this.page, pageSize: this.pageSize});
   }
 }

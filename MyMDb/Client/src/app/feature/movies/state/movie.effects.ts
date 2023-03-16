@@ -21,7 +21,9 @@ export class MoviesEffects {
                 return movies;
             }),
             tap(movies => {
-                this.store.dispatch(loadTopRatedMoviesSuccess({ movies: movies.data, total: movies.total }));
+                console.log(movies);
+                
+                this.store.dispatch(loadTopRatedMoviesSuccess({ movies: movies.movies, total: movies.total }));
             })),
         {
             dispatch: false

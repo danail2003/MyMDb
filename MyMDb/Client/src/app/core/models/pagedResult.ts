@@ -1,6 +1,6 @@
 import { Movie } from "./movie";
 
 export interface PagedResult {
-    data: Movie[];
+    movies: Movie[];
     total: number;
 }
